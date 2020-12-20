@@ -1,0 +1,56 @@
+/*
+ * Copyright 2019 Red Hat, Inc. and/or its affiliates.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package solver;
+    dialect "java"
+    import com.example.domain.Lesson
+    import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder
+    import java.time.DayOfWeek
+    import com.example.domain.Timeslot
+    import com.example.domain.Room
+    global HardSoftScoreHolder scoreHolder;
+ rule "roomConflict"
+ when
+    l:Lesson(timeslot!=null,$t:timeslot,room!=null,$n:room)
+    Lesson(this!=l,timeslot==$t,room==$n)
+ then
+    //System.out.println("教室冲突！（基于规则文件）"+$n.getName()+":");
+    System.out.println(l);
+    scoreHolder.addHardConstraintMatch(kcontext,-1);
+  end
+
+  rule "teacherConflict"
+   when
+      l:Lesson(timeslot!=null,$t:timeslot,$te:teacher)
+      Lesson(this!=l,timeslot,teacher==$te)
+   then
+      System.out.println("教师冲突！（基于规则文件）");
+      scoreHolder.addHardConstraintMatch(kcontext,-1);
+    end
+ rule "studentConflict"
+   when
+      l:Lesson(timeslot!=null,$t:timeslot,$sg:studentGroup)
+      Lesson(this!=l,timeslot==$t,studentGroup==$sg)
+   then
+      scoreHolder.addHardConstraintMatch(kcontext,-1);
+    end
+
+  rule "testConflict"
+     when
+        l:Lesson(timeslot!=null,timeslot.dayOfWeek==DayOfWeek.MONDAY)
+     then
+        scoreHolder.addSoftConstraintMatch(kcontext,-1);
+      end

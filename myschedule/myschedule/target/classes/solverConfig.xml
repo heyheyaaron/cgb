@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<solver>
+  <solutionClass>com.example.domain.zuoxi.bean.Roster</solutionClass>
+  <entityClass>com.example.domain.zuoxi.bean.Shift</entityClass>
+  <!--<solutionClass>com.example.domain.TimeTable</solutionClass>
+  <entityClass>com.example.domain.Lesson</entityClass>-->
+
+  <scoreDirectorFactory>
+    <!--<scoreDrl>solver/timetableRules.drl</scoreDrl>-->
+    <scoreDrl>solver/employeeRosteringScoreRules.drl</scoreDrl>
+    <!--<constraintProviderClass>org.optaweb.employeerostering.service.solver.EmployeeRosteringConstraintProvider</constraintProviderClass>-->
+  </scoreDirectorFactory>
+
+  <termination>
+    <secondsSpentLimit>10</secondsSpentLimit>
+  </termination>
+</solver>
