@@ -17,10 +17,12 @@ import java.util.concurrent.ExecutionException;
 @RequestMapping("/timeTable")
 public class TimeTableController {
 
-    private SolverManager<TimeTable, UUID> solverManager;
+
 
     @PostMapping("/solve")
     public TimeTable solve(@RequestBody TimeTable problem) {
+        SolverConfig solverConfig = SolverConfig.createFromXmlResource("solverConfig.xml");
+        SolverManager<TimeTable, UUID> solverManager = SolverManager.create(solverConfig, new SolverManagerConfig());
         UUID problemId = UUID.randomUUID();
         // Submit the problem to start solving
 
@@ -35,10 +37,5 @@ public class TimeTableController {
         return solution;
     }
 
-    public TimeTableController(){
-        SolverConfig solverConfig = SolverConfig.createFromXmlResource("solverConfig.xml");
-        SolverManager<TimeTable, UUID> solverManager = SolverManager.create(solverConfig, new SolverManagerConfig());
-        this.solverManager=solverManager;
-    }
 
 }

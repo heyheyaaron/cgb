@@ -21,9 +21,9 @@ public class Shift extends AbstractPersistable {
     private LocalDateTime endTime;
     private int need;
     @PlanningVariable(valueRangeProviderRefs = "employeeRange")
-    private Employee employee=null;
+    private Employee employee;
     @PlanningPin
-    private boolean pinned=false;
+    private boolean pinned;
 
     @AssertTrue(message = "Shift's end date time is not at least 30 minutes" +
             " after shift's start date time")
@@ -38,5 +38,18 @@ public class Shift extends AbstractPersistable {
         this.startTime = startTime;
         this.endTime = endTime;
         this.need=need;
+    }
+
+    @Override
+    public String toString() {
+        return "Shift{" +
+                ", id=" + id +
+                "shiftType='" + shiftType + '\'' +
+                ", startTime=" + startTime +
+                ", endTime=" + endTime +
+                ", need=" + need +
+                ", employee=" + employee +
+                ", pinned=" + pinned +
+                '}';
     }
 }

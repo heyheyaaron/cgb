@@ -22,9 +22,8 @@ public class Roster extends AbstractPersistable{
     private List<Employee> employeeList;
     @PlanningEntityCollectionProperty
     private List<Shift> shiftList;
-
     @PlanningScore
-    private HardSoftScore score = null;
+    private HardSoftScore hardSoftScore;
 
     public Roster(long id, List<Employee> employeeList, List<Shift> shiftList) {
         super(id);

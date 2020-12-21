@@ -1,11 +1,13 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.time.LocalDateTime;
 
 public class MyTest {
     @Test
     public void test1(){
-        List list = new ArrayList();
+        System.out.println(LocalDateTime.now().getDayOfMonth()==LocalDateTime.now().getDayOfMonth());
+        System.out.println(LocalDateTime.now().getDayOfYear());
+        System.out.println(LocalDateTime.now().getDayOfWeek());
+
     }
 }
