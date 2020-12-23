@@ -52,7 +52,9 @@ public class TimeTableControllerTest {
         Roster problem = generateRosterProblem();
         Roster solution = rosterController.solve(problem);
         assertTrue(solution.getHardSoftScore().isFeasible());
+        System.out.println("0");
     }
+
     private Roster generateRosterProblem(){
         Employee employee1 = new Employee(1L,"aaa","123456","zhuguan1",3,"5");
         Employee employee2 = new Employee(2L,"bbb","123222","zhuguan1",3,"5");
@@ -64,7 +66,7 @@ public class TimeTableControllerTest {
         Employee employee8= new Employee(8L,"hhh","123468","zhuguan2",5,"4");
         List<Employee> employees = Arrays.asList(employee1, employee2, employee3, employee4,employee5);
                 //, employee6,employee7,employee8);
-        Shift shift0 = new Shift(0L,"A1", LocalDateTime.of(2020,12,10,9,00),LocalDateTime.of(2020,12,10,18,00),3);
+        Shift shift0 = new Shift(0L,"A1", LocalDateTime.of(2020,12,10,8,00),LocalDateTime.of(2020,12,10,18,00),3);
         Shift shift1 = new Shift(1L,"A1", LocalDateTime.of(2020,12,10,9,00),LocalDateTime.of(2020,12,10,18,00),3);
         Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2020,12,10,10,00),LocalDateTime.of(2020,12,10,19,00),4);
         Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2020,12,11,0,00),LocalDateTime.of(2020,12,11,18,00),5);
@@ -84,7 +86,7 @@ public class TimeTableControllerTest {
         List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3,shift4,shift5,shift6,shift7,shift8,shift9,shift10,shift11,shift12,shift13,shift14,shift15);
 
         //List<Shift> shifts=Arrays.asList(shift1,shift6,shift11);
-        return new Roster(2L,employees,shifts);
+        return new Roster(3L,employees,shifts);
     }
 
     private TimeTable generateProblem() {

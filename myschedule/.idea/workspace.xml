@@ -1,30 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="aa2bbfae-d90f-4ab2-a464-a85754d52c15" name="Default Changelist" comment="rosterDemo can run with two drools">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/doc/TimeTableService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/RosterConstraintConfiguration.java" afterDir="false" />
+    <list default="true" id="aa2bbfae-d90f-4ab2-a464-a85754d52c15" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Employee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Roster.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Roster.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Shift.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Shift.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/SolverConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/SolverConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/filter/ShiftPinningFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/filter/ShiftPinningFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/solver/employeeRosteringScoreRules.drl" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/solver/employeeRosteringScoreRules.drl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/solverConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/solverConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/MyTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/MyTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/com/example/rest/TimeTableControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/com/example/rest/TimeTableControllerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/TimeTableController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/TimeTableController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/controller/zuoxi/RosterController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/controller/zuoxi/RosterController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/domain/zuoxi/bean/Roster.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/domain/zuoxi/bean/Roster.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/example/domain/zuoxi/bean/Shift.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/domain/zuoxi/bean/Shift.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/example/domain/zuoxi/filter/ShiftPinningFilter.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/example/domain/zuoxi/filter/ShiftPinningFilter.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/solver/employeeRosteringScoreRules.drl" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/solver/employeeRosteringScoreRules.drl" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/solverConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/solverConfig.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/MyTest.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/rest/TimeTableControllerTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/com/example/rest/TimeTableControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/com/example/rest/TimeTableControllerTest.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -139,37 +129,37 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="drl" value="250" />
-          <entry key="java" value="801" />
-          <entry key="txt" value="37" />
-          <entry key="xml" value="2" />
+          <entry key="drl" value="319" />
+          <entry key="java" value="1059" />
+          <entry key="txt" value="59" />
+          <entry key="xml" value="49" />
           <entry key="yml" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Drools" value="250" />
-          <entry key="JAVA" value="801" />
-          <entry key="PLAIN_TEXT" value="37" />
-          <entry key="XML" value="2" />
+          <entry key="Drools" value="319" />
+          <entry key="JAVA" value="1059" />
+          <entry key="PLAIN_TEXT" value="59" />
+          <entry key="XML" value="49" />
           <entry key="YAML" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="class" value="19" />
-          <entry key="drl" value="2" />
-          <entry key="java" value="33" />
-          <entry key="xml" value="4" />
+          <entry key="class" value="26" />
+          <entry key="drl" value="3" />
+          <entry key="java" value="40" />
+          <entry key="xml" value="6" />
           <entry key="yml" value="2" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CLASS" value="19" />
-          <entry key="Drools" value="2" />
-          <entry key="JAVA" value="33" />
-          <entry key="XML" value="4" />
+          <entry key="CLASS" value="26" />
+          <entry key="Drools" value="3" />
+          <entry key="JAVA" value="40" />
+          <entry key="XML" value="6" />
           <entry key="YAML" value="2" />
         </counts>
       </usages-collector>
@@ -178,10 +168,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Roster.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/com/example/rest/TimeTableControllerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="-175">
+              <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -190,22 +180,10 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/RosterConstraintConfiguration.java">
+        <entry file="file://$PROJECT_DIR$/src/test/java/MyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="12" column="70" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="70" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Employee.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-95">
-              <caret line="8" column="5" selection-start-line="8" selection-start-column="5" selection-end-line="8" selection-end-column="5" />
+            <state relative-caret-position="449">
+              <caret line="48" selection-start-line="48" selection-end-line="48" />
             </state>
           </provider>
         </entry>
@@ -213,53 +191,35 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/solverConfig.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="228">
-              <caret line="12" selection-start-line="12" selection-end-line="12" />
+            <state relative-caret-position="167">
+              <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
+        <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar!/org/junit/jupiter/engine/extension/TimeoutInvocation.class">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+            <state relative-caret-position="590">
+              <caret line="43" selection-start-line="43" selection-end-line="43" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/test/java/com/example/rest/TimeTableControllerTest.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Shift.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="19">
+              <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/SolverConfig.java">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="17" column="68" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="68" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="88">
-              <caret line="47" selection-start-line="47" selection-end-line="47" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="-4">
+              <caret line="10" column="39" lean-forward="true" selection-end-line="17" />
             </state>
           </provider>
         </entry>
@@ -267,17 +227,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/solver/timetableRules.drl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
+            <state relative-caret-position="699">
               <caret line="51" column="9" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="9" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="123">
+              <caret line="45" selection-start-line="45" selection-end-line="45" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/example/doc/TimeTableService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="152">
+              <caret line="15" column="30" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="30" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/resources/solver/employeeRosteringScoreRules.drl">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-190">
-              <caret line="35" column="24" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="24" />
+            <state relative-caret-position="186">
+              <caret line="30" column="10" lean-forward="true" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -299,6 +280,7 @@
       <find>scoreHolder</find>
       <find>$st:timeslot.startTime,$et:timeslot.endTime</find>
       <find>getSolverStatus</find>
+      <find>0!!!!</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -312,7 +294,6 @@
         <option value="$PROJECT_DIR$/src/test/java/TimeTableControllerTest.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/constrain/TimeTableConstraintProvider1.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/Employee.java" />
-        <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/enums/ShiftType.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/AbstractPersistable.java" />
         <option value="$PROJECT_DIR$/src/main/resources/employeeRosteringScoreRules.drl" />
@@ -322,22 +303,23 @@
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/LessonPinningFilter.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/Timeslot.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/Lesson.java" />
-        <option value="$PROJECT_DIR$/src/test/java/MyTest.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/solverConfig.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/controller/TimeTableController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/SolverConfig.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Shift.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/doc/TimeTableService.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/filter/ShiftPinningFilter.java" />
         <option value="$PROJECT_DIR$/src/main/resources/solver/timetableRules.drl" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/config/RosterConstraintConfiguration.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Roster.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/RosterConstraintConfiguration.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/solver/employeeRosteringScoreRules.drl" />
         <option value="$PROJECT_DIR$/src/main/resources/application.yml" />
         <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Employee.java" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Shift.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java" />
+        <option value="$PROJECT_DIR$/src/test/java/MyTest.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/solver/employeeRosteringScoreRules.drl" />
+        <option value="$PROJECT_DIR$/src/main/resources/solverConfig.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/example/rest/TimeTableControllerTest.java" />
       </list>
     </option>
@@ -628,6 +610,15 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="comparator" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myschedule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myschedule" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
               <item name="constrain" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -638,6 +629,16 @@
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="example" type="462c0819:PsiDirectoryNode" />
               <item name="controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myschedule" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myschedule" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="example" type="462c0819:PsiDirectoryNode" />
+              <item name="controller" type="462c0819:PsiDirectoryNode" />
+              <item name="zuoxi" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="myschedule" type="b2602c69:ProjectViewProjectNode" />
@@ -751,11 +752,6 @@
               <item name="myschedule" type="b2602c69:ProjectViewProjectNode" />
               <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
-            <path>
-              <item name="myschedule" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-              <item name="Maven: org.optaplanner:optaplanner-core:8.0.0.Final" type="70bed36:NamedLibraryElementNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -765,7 +761,8 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1608689664647" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1608718512115" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -803,26 +800,12 @@
     </option>
   </component>
   <component name="RunManager" selected="JUnit.TimeTableControllerTest.solveRoster">
-    <configuration name="MyTest.test1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MyTest.solveRoster1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="myschedule" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="MyTest" />
-      <option name="METHOD_NAME" value="test1" />
+      <option name="METHOD_NAME" value="solveRoster1" />
       <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="TimeTableControllerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="myschedule" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.example.rest.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.example.rest" />
-      <option name="MAIN_CLASS_NAME" value="com.example.rest.TimeTableControllerTest" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -875,6 +858,22 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="TimeTableControllerTest.solveRoster1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="myschedule" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.example.rest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.example.rest" />
+      <option name="MAIN_CLASS_NAME" value="com.example.rest.TimeTableControllerTest" />
+      <option name="METHOD_NAME" value="solveRoster1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TimeTableSpringBootApp" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="myschedule" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.example.TimeTableSpringBootApp" />
@@ -885,18 +884,18 @@
     <list>
       <item itemvalue="Spring Boot.TimeTableSpringBootApp" />
       <item itemvalue="JUnit.TimeTableControllerTest.solve" />
-      <item itemvalue="JUnit.TimeTableControllerTest" />
       <item itemvalue="JUnit.TimeTableControllerTest.solve1" />
-      <item itemvalue="JUnit.MyTest.test1" />
       <item itemvalue="JUnit.TimeTableControllerTest.solveRoster" />
+      <item itemvalue="JUnit.TimeTableControllerTest.solveRoster1" />
+      <item itemvalue="JUnit.MyTest.solveRoster1" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TimeTableControllerTest.solveRoster" />
+        <item itemvalue="JUnit.MyTest.solveRoster1" />
+        <item itemvalue="JUnit.TimeTableControllerTest.solveRoster1" />
         <item itemvalue="JUnit.TimeTableControllerTest.solve" />
         <item itemvalue="JUnit.TimeTableControllerTest.solve1" />
-        <item itemvalue="JUnit.MyTest.test1" />
-        <item itemvalue="JUnit.TimeTableControllerTest" />
       </list>
     </recent_temporary>
   </component>
@@ -922,7 +921,7 @@
       <workItem from="1608432041973" duration="19083000" />
       <workItem from="1608512669684" duration="26448000" />
       <workItem from="1608600359354" duration="19845000" />
-      <workItem from="1608684894073" duration="4605000" />
+      <workItem from="1608684894073" duration="22832000" />
     </task>
     <task id="LOCAL-00001" summary="rosterDemo can run with two drools">
       <created>1608545111883</created>
@@ -931,48 +930,55 @@
       <option name="project" value="LOCAL" />
       <updated>1608545111883</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="constrainConfiguration">
+      <created>1608689776566</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1608689776566</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 15m 40s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 15h 48m 53s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 19m 31s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 15h 54m 40s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 30m 53s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 16h 02m 14s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 35m 43s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 16h 03m 41s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 38m 51s.xml">
+    <history-entry file="MyTest_solveRoster1 - 2020.12.23 at 16h 05m 23s.xml">
+      <configuration name="MyTest.solveRoster1" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 16h 07m 23s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 41m 04s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 16h 17m 39s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 44m 46s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 17h 41m 15s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.22 at 18h 47m 51s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 17h 43m 37s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 09h 46m 10s.xml">
-      <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
-    </history-entry>
-    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 10h 05m 21s.xml">
+    <history-entry file="TimeTableControllerTest_solveRoster - 2020.12.23 at 18h 24m 45s.xml">
       <configuration name="TimeTableControllerTest.solveRoster" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="138859000" />
+    <option name="totallyTimeSpent" value="157086000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2927383" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25869894" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -982,15 +988,15 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.59574467" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49848714" visible="true" weight="0.5220949" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.49918166" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49848714" visible="true" weight="0.400982" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.400982" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.34860885" />
       <window_info anchor="bottom" id="Spring" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49924356" weight="0.43535188" />
@@ -1007,7 +1013,7 @@
       <window_info anchor="right" id="Bean Validation" order="10" weight="0.32980332" />
     </layout>
     <layout-to-restore>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2927383" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25869894" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -1017,15 +1023,15 @@
       <window_info id="Web" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.59574467" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49924356" visible="true" weight="0.42389524" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.44189852" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49848714" weight="0.44026187" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="8" weight="0.3289689" />
-      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50075644" side_tool="true" weight="0.5351882" />
-      <window_info anchor="bottom" id="Version Control" order="10" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5015129" side_tool="true" weight="0.400982" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.34860885" />
       <window_info anchor="bottom" id="Spring" order="11" />
       <window_info anchor="bottom" id="Java Enterprise" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" sideWeight="0.49924356" weight="0.43535188" />
@@ -1045,6 +1051,32 @@
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -1053,7 +1085,8 @@
       <path value="$PROJECT_DIR$/../.." />
     </ignored-roots>
     <MESSAGE value="rosterDemo can run with two drools" />
-    <option name="LAST_COMMIT_MESSAGE" value="rosterDemo can run with two drools" />
+    <MESSAGE value="constrainConfiguration" />
+    <option name="LAST_COMMIT_MESSAGE" value="constrainConfiguration" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1072,15 +1105,18 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java</url>
-          <line>47</line>
+          <line>44</line>
           <properties />
-          <option name="timeStamp" value="39" />
+          <option name="timeStamp" value="46" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
     <watches-manager>
       <configuration name="JUnit">
         <watch expression="problem" />
+        <watch expression="scoreExplanation" />
+        <watch expression="scoreExplanation" language="JAVA" />
+        <watch expression="scoreExplanation" language="JAVA" />
       </configuration>
     </watches-manager>
   </component>
@@ -1094,49 +1130,6 @@
     </expressions>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/LessonPinningFilter.java" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/TimeTableSpringBootApp.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="8" column="65" selection-start-line="8" selection-start-column="65" selection-end-line="8" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="400">
-          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/optaplanner/optaplanner-core/8.0.0.Final/optaplanner-core-8.0.0.Final.jar!/org/optaplanner/core/api/domain/solution/ProblemFactCollectionProperty.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="14" column="18" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/Timeslot.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-125">
-          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/Room.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-250">
-          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/drools/drools-model-compiler/7.46.0.Final/drools-model-compiler-7.46.0.Final.jar!/org/drools/modelcompiler/constraints/ConstraintEvaluator.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="110" selection-start-line="110" selection-end-line="110" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$MAVEN_REPOSITORY$/org/optaplanner/optaplanner-core/8.0.0.Final/optaplanner-core-8.0.0.Final.jar!/org/optaplanner/core/impl/solver/DefaultSolverJob.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="299">
@@ -1165,13 +1158,6 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/MyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="7" column="99" selection-start-line="7" selection-start-column="99" selection-end-line="7" selection-end-column="99" />
         </state>
       </provider>
     </entry>
@@ -1298,20 +1284,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Shift.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="343">
-          <caret line="43" column="105" selection-start-line="43" selection-start-column="99" selection-end-line="43" selection-end-column="105" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/doc/TimeTableService.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="20" column="16" lean-forward="true" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://F:/jdk/jdk1.8.0_161/jre/lib/rt.jar!/sun/reflect/DelegatingMethodAccessorImpl.class">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="157">
@@ -1323,13 +1295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="479">
           <caret line="59" column="21" selection-start-line="59" selection-start-column="21" selection-end-line="59" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
         </state>
       </provider>
     </entry>
@@ -1382,30 +1347,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/solverConfig.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="12" selection-start-line="12" selection-end-line="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/SolverConfig.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="17" column="68" selection-start-line="17" selection-start-column="56" selection-end-line="17" selection-end-column="68" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/solver/timetableRules.drl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="51" column="9" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Roster.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="266">
@@ -1426,14 +1367,135 @@
     <entry file="file://$PROJECT_DIR$/src/main/resources/application.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
-          <caret line="8" column="23" lean-forward="true" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+          <caret line="8" column="23" selection-start-line="8" selection-start-column="23" selection-end-line="8" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/optaplanner/optaplanner-core/8.0.0.Final/optaplanner-core-8.0.0.Final.jar!/org/optaplanner/core/impl/score/constraint/DefaultIndictment.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="137">
+          <caret line="33" selection-start-line="33" selection-end-line="33" />
+          <folding>
+            <element signature="e#1084#1085#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="115">
+          <caret line="34" column="21" selection-start-line="34" selection-start-column="21" selection-end-line="34" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/SolverConfig.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="23" column="132" lean-forward="true" selection-start-line="23" selection-start-column="116" selection-end-line="23" selection-end-column="132" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/optaplanner/optaplanner-test/8.1.0-SNAPSHOT/optaplanner-test-8.1.0-SNAPSHOT.jar!/org/optaplanner/test/impl/score/buildin/hardsoft/HardSoftScoreVerifier.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar!/org/junit/jupiter/engine/execution/MethodInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="50" selection-start-line="50" selection-end-line="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar!/org/junit/platform/commons/util/BlacklistedExceptions.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/RosterConstraintConfiguration.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="157">
+          <caret line="10" column="67" selection-start-line="10" selection-start-column="65" selection-end-line="10" selection-end-column="67" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/platform/junit-platform-commons/1.5.2/junit-platform-commons-1.5.2.jar!/org/junit/platform/commons/util/ReflectionUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="363" selection-start-line="363" selection-end-line="363" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/junit/jupiter/junit-jupiter-engine/5.5.2/junit-jupiter-engine-5.5.2.jar!/org/junit/jupiter/engine/extension/TimeoutInvocation.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="590">
+          <caret line="43" selection-start-line="43" selection-end-line="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/solver/timetableRules.drl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="699">
+          <caret line="51" column="9" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/bean/Shift.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="14" column="57" selection-start-line="14" selection-start-column="57" selection-end-line="14" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/comparator/ShiftDifficultyComparator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <caret line="10" column="39" lean-forward="true" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/MyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="449">
+          <caret line="48" selection-start-line="48" selection-end-line="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/solverConfig.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="16" column="52" lean-forward="true" selection-start-line="16" selection-start-column="52" selection-end-line="16" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/doc/TimeTableService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="15" column="30" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/solver/employeeRosteringScoreRules.drl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="30" column="10" lean-forward="true" selection-start-line="30" selection-start-column="10" selection-end-line="30" selection-end-column="10" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/example/rest/TimeTableControllerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="61" column="43" selection-start-line="61" selection-start-column="43" selection-end-line="61" selection-end-column="43" />
+        <state relative-caret-position="-175">
+          <caret line="34" column="46" selection-start-line="34" selection-start-column="46" selection-end-line="34" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1442,28 +1504,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/example/controller/zuoxi/RosterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="47" selection-start-line="47" selection-end-line="47" />
+        <state relative-caret-position="123">
+          <caret line="45" selection-start-line="45" selection-end-line="45" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/example/domain/zuoxi/config/RosterConstraintConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="12" column="70" selection-start-line="12" selection-start-column="69" selection-end-line="12" selection-end-column="70" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/solver/employeeRosteringScoreRules.drl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-190">
-          <caret line="35" column="24" selection-start-line="35" selection-start-column="16" selection-end-line="35" selection-end-column="24" />
         </state>
       </provider>
     </entry>

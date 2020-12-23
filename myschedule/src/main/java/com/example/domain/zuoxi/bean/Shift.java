@@ -1,6 +1,5 @@
 package com.example.domain.zuoxi.bean;
 
-import com.example.comparator.ShiftDifficultyComparator;
 import com.example.domain.zuoxi.filter.ShiftPinningFilter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,7 +12,8 @@ import javax.validation.constraints.AssertTrue;
 import java.time.Duration;
 import java.time.LocalDateTime;
 @Data
-@PlanningEntity(pinningFilter = ShiftPinningFilter.class,difficultyComparatorClass = ShiftDifficultyComparator.class)
+@PlanningEntity(pinningFilter = ShiftPinningFilter.class)
+        //,difficultyComparatorClass = ShiftDifficultyComparator.class)
 @AllArgsConstructor
 @NoArgsConstructor
 public class Shift extends AbstractPersistable {
@@ -52,8 +52,8 @@ public class Shift extends AbstractPersistable {
     @Override
     public String toString() {
         return "Shift{" +
-                ", id=" + id +
-                "shiftType='" + shiftType + '\'' +
+                "id=" + id +
+                ", shiftType='" + shiftType + '\'' +
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", need=" + need +

@@ -1,9 +1,11 @@
 package com.example.controller.zuoxi;
 
 import com.example.domain.zuoxi.bean.Roster;
+import com.example.domain.zuoxi.bean.Shift;
 import org.optaplanner.core.api.score.ScoreExplanation;
 import org.optaplanner.core.api.score.ScoreManager;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
+import org.optaplanner.core.api.score.constraint.ConstraintMatch;
 import org.optaplanner.core.api.score.constraint.ConstraintMatchTotal;
 import org.optaplanner.core.api.score.constraint.Indictment;
 import org.optaplanner.core.api.solver.SolverJob;
@@ -46,12 +48,32 @@ public class RosterController {
             Map<String, ConstraintMatchTotal<HardSoftScore>> constraintMatchTotalMap = scoreExplanation.getConstraintMatchTotalMap();
             Map<Object, Indictment<HardSoftScore>> indictmentMap = scoreExplanation.getIndictmentMap();
             Roster solution1 = scoreExplanation.getSolution();
+            //获取违反的约束和分数
+            getConstrainNameAndScore(solution, indictmentMap);
             System.out.println(solution1);
         } catch (InterruptedException | ExecutionException e) {
             throw new IllegalStateException("Solving failed.", e);
         }
         return solution;
     }
+
+    private void getConstrainNameAndScore(Roster solution, Map<Object, Indictment<HardSoftScore>> indictmentMap) {
+        for (Shift shift : solution.getShiftList()) {
+            Indictment<HardSoftScore> indictment = indictmentMap.get(shift);
+            if (indictment == null) {
+                continue;
+            }
+            // The score impact of that planning entity
+            HardSoftScore totalScore = indictment.getScore();
+
+            for (ConstraintMatch<HardSoftScore> constraintMatch : indictment.getConstraintMatchSet()) {
+                String constraintName = constraintMatch.getConstraintName();
+                HardSoftScore hardSoftScore = constraintMatch.getScore();
+                System.out.println(constraintName+":"+hardSoftScore);
+            }
+        }
+    }
+
     @PostMapping("/terminate")
     public void solve(@RequestBody int problemId) {
         solverManager.terminateEarly(problemId);
