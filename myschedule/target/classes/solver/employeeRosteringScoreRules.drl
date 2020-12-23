@@ -21,32 +21,39 @@ import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder
 import java.time.temporal.ChronoUnit;
 global HardSoftScoreHolder scoreHolder;
 
-rule "Break between non-consecutive shifts is at least 10 hours"
-    when
-        $s : Shift(
+rule "one employee can not work in the same day"
+when
+    $s : Shift(
                 employee != null,
-                $e : employee,
-                $leftEndDateTime : endTime)
-        Shift(
-                employee == $e,
-                $leftEndDateTime < startTime,
-                $leftEndDateTime.until(startTime, ChronoUnit.HOURS) < 10,
-                this != $s,
-                $rightStartDateTime: startTime)
-    then
-        scoreHolder.addHardConstraintMatch(kcontext,-1);
-    end
+                $e: employee,
+                $startDateTime1: startTime,
+                $id:id)
+    Shift(
+            employee == $e,
+            $startDateTime1.getDayOfMonth() == startTime.getDayOfMonth(),
+            id>$id)
+then
+    scoreHolder.penalize(kcontext);
+    //scoreHolder.addHardConstraintMatch(kcontext,-11);
+    //System.out.println("one employee can not work in same day");
+ end
 
-rule "day conflict"
-    when
-        $s : Shift(
-                        employee != null,
-                        $e : employee,
-                        $leftStartDateTime : startTime)
-                Shift(
-                        employee == $e,
-                        $leftStartDateTime.getDayOfMonth()==startTime.getDayOfMonth(),
-                        this != $s)
-     then
-       scoreHolder.addHardConstraintMatch(kcontext,-1);
-      end
+rule "Break between non-consecutive shifts is at least 12 hours"
+when
+    $s : Shift(
+            employee != null,
+            $e : employee,
+            $leftEndDateTime: endTime,
+            $id:id)
+    Shift(
+            employee == $e,
+            $leftEndDateTime < startTime,
+            $leftEndDateTime.until(startTime, ChronoUnit.HOURS) < 12,
+            id>$id)
+then
+    //scoreHolder.addHardConstraintMatch(kcontext,-7);
+    scoreHolder.penalize(kcontext,3);
+    //System.out.println("Break between non-consecutive shifts is at least 12 hours");
+end
+
+

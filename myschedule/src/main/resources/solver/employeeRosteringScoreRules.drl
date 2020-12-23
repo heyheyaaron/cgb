@@ -33,8 +33,8 @@ when
             $startDateTime1.getDayOfMonth() == startTime.getDayOfMonth(),
             id>$id)
 then
-    //scoreHolder.penalize(kcontext,-1);
-    scoreHolder.addHardConstraintMatch(kcontext,-11);
+    scoreHolder.penalize(kcontext);
+    //scoreHolder.addHardConstraintMatch(kcontext,-11);
     //System.out.println("one employee can not work in same day");
  end
 
@@ -51,7 +51,8 @@ when
             $leftEndDateTime.until(startTime, ChronoUnit.HOURS) < 12,
             id>$id)
 then
-    scoreHolder.addHardConstraintMatch(kcontext,-7);
+    //scoreHolder.addHardConstraintMatch(kcontext,-7);
+    scoreHolder.penalize(kcontext,3);
     //System.out.println("Break between non-consecutive shifts is at least 12 hours");
 end
 

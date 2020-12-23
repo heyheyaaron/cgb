@@ -1,8 +1,10 @@
 package com.example.domain.zuoxi.bean;
 
+import com.example.domain.zuoxi.config.RosterConstraintConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.optaplanner.core.api.domain.constraintweight.ConstraintConfigurationProvider;
 import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
 import org.optaplanner.core.api.domain.solution.PlanningScore;
 import org.optaplanner.core.api.domain.solution.PlanningSolution;
@@ -17,6 +19,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Roster extends AbstractPersistable{
+    @ConstraintConfigurationProvider
+    private RosterConstraintConfiguration rosterConstraintConfiguration=new RosterConstraintConfiguration();
+
     @ProblemFactCollectionProperty
     @ValueRangeProvider(id = "employeeRange")
     private List<Employee> employeeList;

@@ -6,4 +6,4 @@ optaplanner:
 logging:
   level:
     org:
-      optaplanner: debug
+      optaplanner: info
