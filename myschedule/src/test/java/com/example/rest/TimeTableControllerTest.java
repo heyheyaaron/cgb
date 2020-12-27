@@ -17,9 +17,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.atomic.AtomicLong;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -33,6 +32,7 @@ public class TimeTableControllerTest {
     private TimeTableController timeTableController;
     @Autowired
     private RosterController rosterController;
+    private static List<Shift> shiftTemplateList = new ArrayList();
 
     @Test
     @Timeout(600_000)
@@ -54,6 +54,51 @@ public class TimeTableControllerTest {
         assertTrue(solution.getHardSoftScore().isFeasible());
         System.out.println("0");
     }
+    @Test
+    @Timeout(600_000)
+    public void solveRosterBatch() {
+        int empNum = 1600;
+        int shiftNum=48;
+        Roster problem = generateRosterProblemBatch(empNum,shiftNum);
+        Roster solution = rosterController.solve(problem);
+        assertTrue(solution.getHardSoftScore().isFeasible());
+        System.out.println("0");
+    }
+    private Roster generateRosterProblemBatch(int empNum,int shiftNum){
+        List<Long> employees=new ArrayList<>();
+        for (int i = 0; i <empNum ; i++) {
+            employees.add((long)i);
+        }
+        int times = 1;
+        int left=shiftNum;
+        int templateNum=shiftTemplateList.size();
+        AtomicLong index=new AtomicLong(0);
+        if (shiftNum>templateNum){
+            times=shiftNum/shiftTemplateList.size();
+            left=shiftNum%templateNum;
+        }
+        List<Shift> shifts = new ArrayList<>();
+        for (int i = 0; i <times ; i++) {
+            for (int j = 0; j <templateNum ; j++) {
+                Shift shift= new Shift();
+                Shift template = shiftTemplateList.get(j);
+                shift.setId(index.getAndIncrement());
+                shift.setStartTime(template.getStartTime());
+                shift.setEndTime(template.getEndTime());
+                shift.setShiftType(template.getShiftType());
+                shift.setNeed(template.getNeed());
+                shifts.add(shift);
+            }
+        }
+        for (int i = 0; i <left ; i++) {
+            shifts.add(shiftTemplateList.get(i));
+        }
+        for (int i = 0; i <shifts.size() ; i++) {
+            Shift shift = shifts.get(i);
+            shift.setId((long)i);
+        }
+        return new Roster(4L,employees,shifts);
+    }
 
     private Roster generateRosterProblem(){
         Employee employee1 = new Employee(1L,"aaa","123456","zhuguan1",3,"5");
@@ -64,8 +109,9 @@ public class TimeTableControllerTest {
         Employee employee6= new Employee(6L,"fff","123466","zhuguan2",5,"4");
         Employee employee7= new Employee(7L,"ggg","123467","zhuguan2",5,"4");
         Employee employee8= new Employee(8L,"hhh","123468","zhuguan2",5,"4");
-        List<Employee> employees = Arrays.asList(employee1, employee2, employee3, employee4,employee5);
+        //List<Employee> employees = Arrays.asList(employee1, employee2, employee3, employee4,employee5);
                 //, employee6,employee7,employee8);
+        List<Long> employees = Arrays.asList(1L,2L,3L,4L,5L,6L,7L,8L,9L);
         Shift shift0 = new Shift(0L,"A1", LocalDateTime.of(2020,12,10,8,00),LocalDateTime.of(2020,12,10,18,00),3);
         Shift shift1 = new Shift(1L,"A1", LocalDateTime.of(2020,12,10,9,00),LocalDateTime.of(2020,12,10,18,00),3);
         Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2020,12,10,10,00),LocalDateTime.of(2020,12,10,19,00),4);
@@ -82,11 +128,11 @@ public class TimeTableControllerTest {
         Shift shift13 = new Shift(13L,"A3", LocalDateTime.of(2020,12,11,0,00),LocalDateTime.of(2020,12,11,18,00),5);
         Shift shift14 = new Shift(14L,"P1", LocalDateTime.of(2020,12,11,14,00),LocalDateTime.of(2020,12,12,18,00),3);
         Shift shift15= new Shift(15L,"P2", LocalDateTime.of(2020,12,13,15,00),LocalDateTime.of(2020,12,13,18,00),true);
-        shift15.setEmployee(employee5);
+        shift15.setEmployeeId(5L);
         List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3,shift4,shift5,shift6,shift7,shift8,shift9,shift10,shift11,shift12,shift13,shift14,shift15);
 
         //List<Shift> shifts=Arrays.asList(shift1,shift6,shift11);
-        return new Roster(3L,employees,shifts);
+        return new Roster(4L,employees,shifts);
     }
 
     private TimeTable generateProblem() {
@@ -120,6 +166,14 @@ public class TimeTableControllerTest {
         lessonList.add(new Lesson(204L, "English", "P. Cruz", "10th grade",new Timeslot(DayOfWeek.TUESDAY, LocalTime.of(9, 30), LocalTime.of(10, 30)),new Room("Room B"),true));
         lessonList.add(new Lesson(205L, "French", "M. Curie", "8th grade"));
         return new TimeTable(lessonList, roomList,timeslotList);
+    }
+    static {
+        Shift shift0 = new Shift("A1", LocalDateTime.of(2020,12,10,8,00),LocalDateTime.of(2020,12,10,18,00),3);
+        Shift shift1 = new Shift("A1", LocalDateTime.of(2020,12,10,9,00),LocalDateTime.of(2020,12,10,18,00),3);
+        Shift shift2 = new Shift("A2", LocalDateTime.of(2020,12,10,10,00),LocalDateTime.of(2020,12,10,19,00),4);
+        Shift shift3 = new Shift("A3", LocalDateTime.of(2020,12,11,0,00),LocalDateTime.of(2020,12,11,18,00),5);
+        Shift shift4 = new Shift("P1", LocalDateTime.of(2020,12,11,14,00),LocalDateTime.of(2020,12,12,18,00),3);
+        shiftTemplateList.addAll(Arrays.asList(shift0,shift1,shift2,shift3,shift4));
     }
 
 }

@@ -24,15 +24,15 @@ public class Roster extends AbstractPersistable{
 
     @ProblemFactCollectionProperty
     @ValueRangeProvider(id = "employeeRange")
-    private List<Employee> employeeList;
+    private List<Long> employeeIdList;
     @PlanningEntityCollectionProperty
     private List<Shift> shiftList;
     @PlanningScore
     private HardSoftScore hardSoftScore;
 
-    public Roster(long id, List<Employee> employeeList, List<Shift> shiftList) {
+    public Roster(long id, List<Long> employeeIdList, List<Shift> shiftList) {
         super(id);
-        this.employeeList = employeeList;
+        this.employeeIdList = employeeIdList;
         this.shiftList = shiftList;
     }
 }

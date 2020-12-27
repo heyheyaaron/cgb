@@ -23,7 +23,7 @@ public class Shift extends AbstractPersistable {
     private int need;
     @PlanningVariable(valueRangeProviderRefs = "employeeRange")
     //,nullable = true)可为空，貌似没用
-    private Employee employee;
+    private Long employeeId;
     @PlanningPin
     private boolean pinned;
 
@@ -48,6 +48,12 @@ public class Shift extends AbstractPersistable {
         this.endTime = endTime;
         this.pinned=pinned;
     }
+    public Shift( String shiftType, LocalDateTime startTime, LocalDateTime endTime,int need) {
+        this.shiftType = shiftType;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.need=need;
+    }
 
     @Override
     public String toString() {
@@ -57,7 +63,7 @@ public class Shift extends AbstractPersistable {
                 ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", need=" + need +
-                ", employee=" + employee +
+                ", employeeId=" + employeeId +
                 ", pinned=" + pinned +
                 '}';
     }

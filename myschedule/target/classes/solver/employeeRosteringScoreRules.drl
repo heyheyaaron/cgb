@@ -24,16 +24,16 @@ global HardSoftScoreHolder scoreHolder;
 rule "one employee can not work in the same day"
 when
     $s : Shift(
-                employee != null,
-                $e: employee,
-                $startDateTime1: startTime,
+                employeeId != null,
+                $employeeId: employeeId,
+                $startDate: startTime.toLocalDate(),
                 $id:id)
     Shift(
-            employee == $e,
-            $startDateTime1.getDayOfMonth() == startTime.getDayOfMonth(),
+            employeeId == $employeeId,
+            $startDate == startTime.toLocalDate(),
             id>$id)
 then
-    scoreHolder.penalize(kcontext,2);
+    scoreHolder.penalize(kcontext);
     //scoreHolder.addHardConstraintMatch(kcontext,-11);
     //System.out.println("one employee can not work in same day");
  end
@@ -41,18 +41,17 @@ then
 rule "Break between non-consecutive shifts is at least 12 hours"
 when
     $s : Shift(
-            employee != null,
-            $e : employee,
-            $leftEndDateTime: endTime,
-            $id:id)
+            employeeId != null,
+            $employeeId : employeeId,
+            $leftEndDateTime: endTime)
     Shift(
-            employee == $e,
-            $leftEndDateTime < startTime,
+            employeeId == $employeeId,
+            $leftEndDateTime <= endTime,
             $leftEndDateTime.until(startTime, ChronoUnit.HOURS) < 12,
             this!=$s)
 then
     //scoreHolder.addHardConstraintMatch(kcontext,-7);
-    scoreHolder.penalize(kcontext,2);
+    scoreHolder.penalize(kcontext);
     //System.out.println("Break between non-consecutive shifts is at least 12 hours");
 end
 
