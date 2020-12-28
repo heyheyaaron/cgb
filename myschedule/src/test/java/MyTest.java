@@ -36,7 +36,7 @@ public class MyTest {
         Roster problem=new Roster(3L,employees,shifts, RosterControllerTest.employeeTemplateList,RosterControllerTest.employeeAvailabilityTemplateList);
         //Roster solution = rosterController.solve(problem);
         //assertTrue(solution.getHardSoftScore().isFeasible());
-        scoreVerifier.assertHardWeight("Unavailable time slot for an employee",0,problem);
+        scoreVerifier.assertHardWeight("at most work 22 days",0,problem);
         //scoreVerifier.assertHardWeight("Break between non-consecutive shifts is at least 12 hours",0,problem);
 
         System.out.println("0!!!!");

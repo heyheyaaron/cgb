@@ -44,8 +44,8 @@ public class RosterControllerTest {
         assertTrue(solution.getHardSoftScore().isFeasible());
     }
     public Roster testGenerate(){
-        int empNum=1600;
-        List<Shift> shiftTemplate = getShiftTemplate(12,1300);
+        int empNum=160;
+        List<Shift> shiftTemplate = getShiftTemplate(12,130);
         List<Long> employeeTemplate = getEmployeeTemplate(empNum);
         Roster roster = new Roster(1L,employeeTemplate,shiftTemplate,employeeTemplateList,employeeAvailabilityTemplateList);
         return roster;

@@ -61,19 +61,18 @@ end
 
 rule "at most work 22 days"
     when
-        $employee : Employee($id:id)
+        Employee($id:id)
         //$s : Shift(employeeId == $id, $startDateTime : startTime)
-        accumulate(
+        Number(intValue > 3) from accumulate(
             $other : Shift(
-                employeeId == $id, $shiftStart : startTime,
-                $shiftEnd : endTime
+                employeeId == $id//, $shiftStart : startTime,
+                //$shiftEnd : endTime
             ),
-            $shiftCount : count($other),
+            count($other)
             //$totalMinutes : sum(Duration.between($shiftStart, $shiftEnd).toMinutes())
         )
-        Number(this > 22) from $shiftCount
     then
-        //System.out.println($shiftCount+":"+$totalMinutes);
+        //System.out.println($shiftCount);
         scoreHolder.penalize(kcontext);
 end
 
