@@ -1,4 +1,4 @@
-package com.example.domain.zuoxi.filter;
+package com.example.filter;
 
 import com.example.domain.zuoxi.bean.Roster;
 import com.example.domain.zuoxi.bean.Shift;

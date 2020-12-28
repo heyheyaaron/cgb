@@ -1,6 +1,6 @@
 package com.example.domain.zuoxi.bean;
 
-import com.example.domain.zuoxi.config.RosterConstraintConfiguration;
+import com.example.config.RosterConstraintConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,10 @@ import java.util.List;
 public class Roster extends AbstractPersistable{
     @ConstraintConfigurationProvider
     private RosterConstraintConfiguration rosterConstraintConfiguration=new RosterConstraintConfiguration();
-
+    @ProblemFactCollectionProperty
+    private List<Employee> employees;
+    @ProblemFactCollectionProperty
+    private List<EmployeeAvailability> employeeAvailabilities;
     @ProblemFactCollectionProperty
     @ValueRangeProvider(id = "employeeRange")
     private List<Long> employeeIdList;
@@ -30,9 +33,11 @@ public class Roster extends AbstractPersistable{
     @PlanningScore
     private HardSoftScore hardSoftScore;
 
-    public Roster(long id, List<Long> employeeIdList, List<Shift> shiftList) {
+    public Roster(long id, List<Long> employeeIdList, List<Shift> shiftList,List<Employee> employees,List<EmployeeAvailability> employeeAvailabilities) {
         super(id);
         this.employeeIdList = employeeIdList;
         this.shiftList = shiftList;
+        this.employees=employees;
+        this.employeeAvailabilities=employeeAvailabilities;
     }
 }

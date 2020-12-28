@@ -1,4 +1,4 @@
-package com.example.domain.zuoxi.enums;
+package com.example.enums;
 
 public enum ShiftType {
     A1("A1"),

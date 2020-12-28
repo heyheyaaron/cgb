@@ -47,10 +47,10 @@ public class RosterController {
             HardSoftScore score = scoreExplanation.getScore();
             Map<String, ConstraintMatchTotal<HardSoftScore>> constraintMatchTotalMap = scoreExplanation.getConstraintMatchTotalMap();
             Map<Object, Indictment<HardSoftScore>> indictmentMap = scoreExplanation.getIndictmentMap();
-            Roster solution1 = scoreExplanation.getSolution();
+            //Roster solution1 = scoreExplanation.getSolution();
             //获取违反的约束和分数
             getConstrainNameAndScore(solution, indictmentMap);
-            System.out.println(solution1);
+            //System.out.println(solution1);
         } catch (InterruptedException | ExecutionException e) {
             throw new IllegalStateException("Solving failed.", e);
         }
@@ -69,7 +69,7 @@ public class RosterController {
             for (ConstraintMatch<HardSoftScore> constraintMatch : indictment.getConstraintMatchSet()) {
                 String constraintName = constraintMatch.getConstraintName();
                 HardSoftScore hardSoftScore = constraintMatch.getScore();
-                System.out.println(constraintName+":"+hardSoftScore);
+                System.out.println(shift+constraintName+":"+hardSoftScore);
             }
         }
     }

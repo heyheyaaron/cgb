@@ -1,4 +1,4 @@
-package com.example.domain.zuoxi.config;
+package com.example.config;
 
 import com.example.domain.zuoxi.bean.Roster;
 import org.optaplanner.core.api.score.ScoreManager;

@@ -18,7 +18,11 @@ package solver;
     dialect "java"
 import com.example.domain.zuoxi.bean.Shift
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScoreHolder
-import java.time.temporal.ChronoUnit;
+import java.time.temporal.ChronoUnit
+import java.time.Duration
+import com.example.domain.zuoxi.bean.Employee
+import com.example.domain.zuoxi.bean.EmployeeAvailability
+import com.example.enums.AvailabilityType
 global HardSoftScoreHolder scoreHolder;
 
 rule "one employee can not work in the same day"
@@ -55,4 +59,54 @@ then
     //System.out.println("Break between non-consecutive shifts is at least 12 hours");
 end
 
+rule "at most work 22 days"
+    when
+        $employee : Employee($id:id)
+        //$s : Shift(employeeId == $id, $startDateTime : startTime)
+        accumulate(
+            $other : Shift(
+                employeeId == $id, $shiftStart : startTime,
+                $shiftEnd : endTime
+            ),
+            $shiftCount : count($other),
+            //$totalMinutes : sum(Duration.between($shiftStart, $shiftEnd).toMinutes())
+        )
+        Number(this > 22) from $shiftCount
+    then
+        //System.out.println($shiftCount+":"+$totalMinutes);
+        scoreHolder.penalize(kcontext);
+end
 
+rule "Unavailable time slot for an employee"
+    when
+        $availability: EmployeeAvailability(
+                state == AvailabilityType.UNAVAILABLE.getType(),
+                $employeeId : employeeId,
+                $startDateTime : startDateTime,
+                $endDateTime : endDateTime)
+        Shift(employeeId == $employeeId,
+            $startDateTime <= endTime,
+            $endDateTime >= startTime)
+    then
+        scoreHolder.penalize(kcontext);
+end
+
+/*
+rule "No more than 6 consecutive shifts"
+    when
+        $s : Shift(
+                $employeeId : employeeId,
+                $firstStartDate : startTime.toLocalDate())
+        $s2: Shift(
+                employeeId == $employeeId,
+                $firstStartDate.plus == startTime.toLocalDate(),
+                this != $s,
+                $secondEndDateTime : endDateTime)
+        $s3: Shift(
+                employee == $e,
+                $secondEndDateTime == startDateTime,
+                this != $s,
+                this != $s2)
+    then
+        scoreHolder.penalize(kcontext, $s3.getLengthInMinutes());
+end*/

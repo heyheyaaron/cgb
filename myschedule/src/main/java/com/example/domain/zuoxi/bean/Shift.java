@@ -1,6 +1,6 @@
 package com.example.domain.zuoxi.bean;
 
-import com.example.domain.zuoxi.filter.ShiftPinningFilter;
+import com.example.filter.ShiftPinningFilter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

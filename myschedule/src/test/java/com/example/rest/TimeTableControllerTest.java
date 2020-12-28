@@ -15,17 +15,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(properties = {
         "optaplanner.solver.termination.spent-limit=3m", // Effectively disable this termination in favor of the best-score-limit
-        "optaplanner.solver.termination.best-score-limit=0hard/*soft",
-        "logging.level.org.optaplanner=info"})
+        "optaplanner.solver.termination.best-score-limit=0init/0hard/*soft",
+        "logging.level.org.optaplanner=debug"})
 public class TimeTableControllerTest {
 
     @Autowired
@@ -33,6 +37,7 @@ public class TimeTableControllerTest {
     @Autowired
     private RosterController rosterController;
     private static List<Shift> shiftTemplateList = new ArrayList();
+    private static List<String> shiftTypeTemplateList = new ArrayList();
 
     @Test
     @Timeout(600_000)
@@ -91,13 +96,15 @@ public class TimeTableControllerTest {
             }
         }
         for (int i = 0; i <left ; i++) {
-            shifts.add(shiftTemplateList.get(i));
+            Shift shift = shiftTemplateList.get(i);
+            shift.setId(index.getAndIncrement());
+            shifts.add(shift);
         }
-        for (int i = 0; i <shifts.size() ; i++) {
-            Shift shift = shifts.get(i);
-            shift.setId((long)i);
-        }
-        return new Roster(4L,employees,shifts);
+//        for (int i = 0; i <shifts.size() ; i++) {
+//            Shift shift = shifts.get(i);
+//            shift.setId((long)i);
+//        }
+        return new Roster(4L,employees,shifts, RosterControllerTest.employeeTemplateList,RosterControllerTest.employeeAvailabilityTemplateList);
     }
 
     private Roster generateRosterProblem(){
@@ -132,7 +139,7 @@ public class TimeTableControllerTest {
         List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3,shift4,shift5,shift6,shift7,shift8,shift9,shift10,shift11,shift12,shift13,shift14,shift15);
 
         //List<Shift> shifts=Arrays.asList(shift1,shift6,shift11);
-        return new Roster(4L,employees,shifts);
+        return new Roster(4L,employees,shifts, RosterControllerTest.employeeTemplateList,RosterControllerTest.employeeAvailabilityTemplateList);
     }
 
     private TimeTable generateProblem() {
@@ -174,6 +181,21 @@ public class TimeTableControllerTest {
         Shift shift3 = new Shift("A3", LocalDateTime.of(2020,12,11,0,00),LocalDateTime.of(2020,12,11,18,00),5);
         Shift shift4 = new Shift("P1", LocalDateTime.of(2020,12,11,14,00),LocalDateTime.of(2020,12,12,18,00),3);
         shiftTemplateList.addAll(Arrays.asList(shift0,shift1,shift2,shift3,shift4));
+        shiftTypeTemplateList.addAll(Arrays.asList("A1","A2","A3","P1","P2","P3"));
+        //Pair pair = Pair.of()
     }
-
+    protected List<Shift> getShiftTemplate(int month){
+        LocalDate localDate = LocalDate.now();
+        int length = localDate.lengthOfMonth();
+        Random r = new Random();
+        List<Shift> list= new ArrayList<>();
+        for (int day = 1; day <= length; day++) {
+            int hour = r.nextInt(13);
+            LocalDateTime start = LocalDateTime.of(2020, month, day, hour, 00);
+            LocalDateTime end = LocalDateTime.of(2020, month, day, hour+8, 00);
+            String shiftType = shiftTypeTemplateList.get(r.nextInt(shiftTypeTemplateList.size()));
+            list.add(new Shift(shiftType,start,end,8));
+        }
+        return list;
+    }
 }
