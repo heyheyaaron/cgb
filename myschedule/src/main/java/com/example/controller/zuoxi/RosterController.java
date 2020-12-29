@@ -20,6 +20,7 @@ import javax.annotation.Resource;
 import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/roster")
@@ -42,6 +43,10 @@ public class RosterController {
             SolverStatus solverStatus = getSolverStatus(problemId);
             // Wait until the solving ends
             solution = solverJob.getFinalBestSolution();
+            Map<Long, Long> collect = solution.getShiftList().stream().collect(Collectors.groupingBy(s -> s.getEmployeeId(), Collectors.counting()));
+            collect.forEach((k,v)->{
+                System.out.println("k="+k+",v="+v);
+            });
             ScoreExplanation<Roster, HardSoftScore> scoreExplanation = scoreManager.explainScore(solution);
             String summary = scoreExplanation.getSummary();
             HardSoftScore score = scoreExplanation.getScore();

@@ -6,6 +6,7 @@ import com.example.domain.zuoxi.bean.EmployeeAvailability;
 import com.example.domain.zuoxi.bean.Roster;
 import com.example.domain.zuoxi.bean.Shift;
 import com.example.enums.AvailabilityType;
+import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +45,12 @@ public class RosterControllerTest {
         assertTrue(solution.getHardSoftScore().isFeasible());
     }
     public Roster testGenerate(){
-        int empNum=160;
-        List<Shift> shiftTemplate = getShiftTemplate(12,130);
-        List<Long> employeeTemplate = getEmployeeTemplate(empNum);
-        Roster roster = new Roster(1L,employeeTemplate,shiftTemplate,employeeTemplateList,employeeAvailabilityTemplateList);
+        int empNum=16;
+        List<Shift> shiftTemplate = getShiftTemplate(12,12);
+        Pair<List<Long>, List<Employee>> pair = getEmployeeTemplate(empNum);
+        List<Long> employeeIds = pair.getLeft();
+        List<Employee> employees = pair.getRight();
+        Roster roster = new Roster(1L,employeeIds,shiftTemplate,employees,employeeAvailabilityTemplateList);
         return roster;
     }
     public List<Shift> getShiftTemplate(int month,int dailyShiftTimes){
@@ -67,12 +70,21 @@ public class RosterControllerTest {
         }
         return list;
     }
-    public List<Long> getEmployeeTemplate(int num){
-        List<Long> employees=new ArrayList<>();
+    public Pair<List<Long>, List<Employee>> getEmployeeTemplate(int num){
+        List<Long> employeeIds=new ArrayList<>();
+        List<Employee> employees= new ArrayList<>();
+        Random r = new Random();
         for (int i = 0; i <num ; i++) {
-            employees.add((long)i);
+            employeeIds.add((long)i);
+            Employee employee = new Employee();
+            employee.setId((long)i);
+            employee.setName("emp"+i);
+            employee.setGroupId(r.nextInt(num/2)+"");
+            employee.setLevel(r.nextInt(5));
+            employees.add(employee);
         }
-        return employees;
+        Pair<List<Long>, List<Employee>> pair = Pair.of(employeeIds, employees);
+        return pair;
     }
     static {
         shiftTypeTemplateList.addAll(Arrays.asList("A1","A2","A3","P1","P2","P3"));
@@ -89,6 +101,9 @@ public class RosterControllerTest {
         employeeTemplateList = Arrays.asList(employee1, employee2, employee3, employee4,employee5,employee6,employee7,employee8,employee9,employee10);
         EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
                 , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNAVAILABLE.getType());
+        EmployeeAvailability employeeAvailability2 = new EmployeeAvailability(2L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
+                , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNDESIRED.getType());
         employeeAvailabilityTemplateList.add(employeeAvailability1);
+        employeeAvailabilityTemplateList.add(employeeAvailability2);
     }
 }

@@ -63,7 +63,7 @@ rule "at most work 22 days"
     when
         Employee($id:id)
         //$s : Shift(employeeId == $id, $startDateTime : startTime)
-        Number(intValue > 3) from accumulate(
+        Number($shiftCount:intValue > 22) from accumulate(
             $other : Shift(
                 employeeId == $id//, $shiftStart : startTime,
                 //$shiftEnd : endTime
@@ -72,7 +72,7 @@ rule "at most work 22 days"
             //$totalMinutes : sum(Duration.between($shiftStart, $shiftEnd).toMinutes())
         )
     then
-        //System.out.println($shiftCount);
+        System.out.println($shiftCount);
         scoreHolder.penalize(kcontext);
 end
 
@@ -90,22 +90,47 @@ rule "Unavailable time slot for an employee"
         scoreHolder.penalize(kcontext);
 end
 
-/*
-rule "No more than 6 consecutive shifts"
+rule "Desired time slot for an employee"
     when
-        $s : Shift(
+        $availability: EmployeeAvailability(
+                state == AvailabilityType.DESIRED.getType(),
+                $employeeId : employeeId,
+                $startDateTime : startDateTime,
+                $endDateTime : endDateTime)
+        Shift(employeeId == $employeeId,
+            $startDateTime <= endTime,
+            $endDateTime >= startTime)
+    then
+        scoreHolder.reward(kcontext);
+end
+
+rule "Undesired time slot for an employee"
+    when
+        $availability: EmployeeAvailability(
+                state == AvailabilityType.UNDESIRED.getType(),
+                $employeeId : employeeId,
+                $startDateTime : startDateTime,
+                $endDateTime : endDateTime)
+        Shift(employeeId == $employeeId,
+            $startDateTime <= endTime,
+            $endDateTime >= startTime)
+    then
+        scoreHolder.penalize(kcontext);
+end
+
+rule "No more than 3 consecutive shifts"
+    when
+        Shift(
                 $employeeId : employeeId,
                 $firstStartDate : startTime.toLocalDate())
-        $s2: Shift(
+        Shift(
                 employeeId == $employeeId,
-                $firstStartDate.plus == startTime.toLocalDate(),
-                this != $s,
-                $secondEndDateTime : endDateTime)
-        $s3: Shift(
-                employee == $e,
-                $secondEndDateTime == startDateTime,
-                this != $s,
-                this != $s2)
+                $firstStartDate.plusDays(1) == startTime.toLocalDate(),
+                $secondStartDate : startTime.toLocalDate())
+        Shift(
+                employeeId == $employeeId,
+                $secondStartDate.plusDays(1) == startTime.toLocalDate()
+                )
     then
-        scoreHolder.penalize(kcontext, $s3.getLengthInMinutes());
-end*/
+        scoreHolder.penalize(kcontext);
+end

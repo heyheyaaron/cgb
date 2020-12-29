@@ -13,7 +13,7 @@
 
   <termination>
     <terminationCompositionStyle>OR</terminationCompositionStyle>
-    <secondsSpentLimit>1500</secondsSpentLimit>
+    <secondsSpentLimit>30</secondsSpentLimit>
     <bestScoreLimit>0init/0hard/-5000soft</bestScoreLimit>
   </termination>
   <!--限定时间内没有更高分则终止-->
