@@ -1,10 +1,8 @@
 package com.example.rest;
 
+import com.example.common.WeekData;
 import com.example.controller.zuoxi.RosterController;
-import com.example.domain.zuoxi.bean.Employee;
-import com.example.domain.zuoxi.bean.EmployeeAvailability;
-import com.example.domain.zuoxi.bean.Roster;
-import com.example.domain.zuoxi.bean.Shift;
+import com.example.domain.zuoxi.bean.*;
 import com.example.enums.AvailabilityType;
 import org.apache.commons.lang3.tuple.Pair;
 import org.junit.jupiter.api.Test;
@@ -12,11 +10,14 @@ import org.junit.jupiter.api.Timeout;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicLong;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -50,9 +51,21 @@ public class RosterControllerTest {
         Pair<List<Long>, List<Employee>> pair = getEmployeeTemplate(empNum);
         List<Long> employeeIds = pair.getLeft();
         List<Employee> employees = pair.getRight();
-        Roster roster = new Roster(1L,employeeIds,shiftTemplate,employees,employeeAvailabilityTemplateList);
+        //Map<Integer, WeekData> weeks = weeks(YearMonth.now());
+        List<GroupPlan> groupPlans = getGroupPlanTemplate();
+        Roster roster = new Roster(1L,employeeIds,shiftTemplate,employees,employeeAvailabilityTemplateList,groupPlans);
         return roster;
     }
+
+    private List<GroupPlan> getGroupPlanTemplate() {
+        List<GroupPlan> list= new ArrayList<>();
+        GroupPlan plan1=new GroupPlan(1L,1L,"A",LocalDate.of(2020,12,1));
+        GroupPlan plan2=new GroupPlan(2L,1L,"P",LocalDate.of(2020,12,2));
+        list.add(plan1);
+        list.add(plan2);
+        return list;
+    }
+
     public List<Shift> getShiftTemplate(int month,int dailyShiftTimes){
         AtomicLong index=new AtomicLong(0);
         LocalDate localDate = LocalDate.now();
@@ -65,7 +78,7 @@ public class RosterControllerTest {
                 LocalDateTime start = LocalDateTime.of(2020, month, day, hour, 00);
                 LocalDateTime end = LocalDateTime.of(2020, month, day, hour+8, 00);
                 String shiftType = shiftTypeTemplateList.get(r.nextInt(shiftTypeTemplateList.size()));
-                list.add(new Shift(index.getAndIncrement(),shiftType, start, end, r.nextInt(3)));
+                list.add(new Shift(index.getAndIncrement(),shiftType, start, end, LocalDate.of(2020,month,day)));
             }
         }
         return list;
@@ -79,7 +92,7 @@ public class RosterControllerTest {
             Employee employee = new Employee();
             employee.setId((long)i);
             employee.setName("emp"+i);
-            employee.setGroupId(r.nextInt(num/2)+"");
+            employee.setGroupId((long)r.nextInt(num/2));
             employee.setLevel(r.nextInt(5));
             employees.add(employee);
         }
@@ -88,16 +101,16 @@ public class RosterControllerTest {
     }
     static {
         shiftTypeTemplateList.addAll(Arrays.asList("A1","A2","A3","P1","P2","P3"));
-        Employee employee1 = new Employee(1L,"aaa","123456","zhuguan1",3,"5");
-        Employee employee2 = new Employee(2L,"bbb","123222","zhuguan1",3,"5");
-        Employee employee3= new Employee(3L,"ccc","123433","zhuguan1",3,"5");
-        Employee employee4= new Employee(4L,"ddd","123444","zhuguan2",4,"4");
-        Employee employee5= new Employee(5L,"eee","123455","zhuguan3",4,"3");
-        Employee employee6= new Employee(6L,"fff","123466","zhuguan3",5,"3");
-        Employee employee7= new Employee(7L,"ggg","123467","zhuguan2",5,"4");
-        Employee employee8= new Employee(8L,"hhh","123468","zhuguan2",5,"4");
-        Employee employee9= new Employee(9L,"eee","123455","zhuguan3",4,"3");
-        Employee employee10= new Employee(10L,"fff","123466","zhuguan3",5,"3");
+        Employee employee1 = new Employee(1L,"aaa","123456","zhuguan1",3,1L);
+        Employee employee2 = new Employee(2L,"bbb","123222","zhuguan1",3,1L);
+        Employee employee3= new Employee(3L,"ccc","123433","zhuguan1",3,5L);
+        Employee employee4= new Employee(4L,"ddd","123444","zhuguan2",4,4L);
+        Employee employee5= new Employee(5L,"eee","123455","zhuguan3",4,3L);
+        Employee employee6= new Employee(6L,"fff","123466","zhuguan3",5,3L);
+        Employee employee7= new Employee(7L,"ggg","123467","zhuguan2",5,4L);
+        Employee employee8= new Employee(8L,"hhh","123468","zhuguan2",5,4L);
+        Employee employee9= new Employee(9L,"eee","123455","zhuguan3",4,3L);
+        Employee employee10= new Employee(10L,"fff","123466","zhuguan3",5,3L);
         employeeTemplateList = Arrays.asList(employee1, employee2, employee3, employee4,employee5,employee6,employee7,employee8,employee9,employee10);
         EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
                 , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNAVAILABLE.getType());
@@ -105,5 +118,15 @@ public class RosterControllerTest {
                 , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNDESIRED.getType());
         employeeAvailabilityTemplateList.add(employeeAvailability1);
         employeeAvailabilityTemplateList.add(employeeAvailability2);
+    }
+    public Map<Integer, WeekData> weeks(YearMonth yearMonth){
+        LocalDate start = LocalDate.now().with(yearMonth).with(TemporalAdjusters.firstDayOfMonth());
+        LocalDate end = LocalDate.now().with(yearMonth).with(TemporalAdjusters.lastDayOfMonth());
+
+        Map<Integer, WeekData> map = Stream.iterate(start, localDate -> localDate.plusDays(1l))
+                .limit(ChronoUnit.DAYS.between(start, end)+1)
+                .collect(Collectors.groupingBy(localDate -> localDate.get(WeekFields.of(DayOfWeek.SUNDAY, 1).weekOfMonth()),
+                        Collectors.collectingAndThen(Collectors.toList(), WeekData::new)));
+        return map;
     }
 }

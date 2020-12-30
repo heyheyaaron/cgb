@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.optaplanner.core.api.domain.constraintweight.ConstraintConfigurationProvider;
-import org.optaplanner.core.api.domain.solution.PlanningEntityCollectionProperty;
-import org.optaplanner.core.api.domain.solution.PlanningScore;
-import org.optaplanner.core.api.domain.solution.PlanningSolution;
-import org.optaplanner.core.api.domain.solution.ProblemFactCollectionProperty;
+import org.optaplanner.core.api.domain.solution.*;
 import org.optaplanner.core.api.domain.valuerange.ValueRangeProvider;
 import org.optaplanner.core.api.score.buildin.hardsoft.HardSoftScore;
 
@@ -30,6 +27,8 @@ public class Roster extends AbstractPersistable{
     private List<Long> employeeIdList;
     @PlanningEntityCollectionProperty
     private List<Shift> shiftList;
+    @ProblemFactCollectionProperty
+    private List<GroupPlan> groupPlans;
     @PlanningScore
     private HardSoftScore hardSoftScore;
 
@@ -39,5 +38,13 @@ public class Roster extends AbstractPersistable{
         this.shiftList = shiftList;
         this.employees=employees;
         this.employeeAvailabilities=employeeAvailabilities;
+    }
+    public Roster(long id, List<Long> employeeIdList, List<Shift> shiftList,List<Employee> employees,List<EmployeeAvailability> employeeAvailabilities,List<GroupPlan> groupPlans) {
+        super(id);
+        this.employeeIdList = employeeIdList;
+        this.shiftList = shiftList;
+        this.employees=employees;
+        this.employeeAvailabilities=employeeAvailabilities;
+        this.groupPlans=groupPlans;
     }
 }

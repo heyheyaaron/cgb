@@ -5,6 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+
+/**
+ * 员工状态表
+ * state由AvailabilityType枚举类指定
+ * @Author: Aaron
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

@@ -14,11 +14,11 @@ public class Employee extends AbstractPersistable {
     private String uid;
     private String superior;
     private int level;
-    private String groupId;
+    private Long groupId;
     private LocalDateTime startWorkTime;
     private LocalDateTime endWorkTime;
 
-    public Employee(long id, String name, String uid, String superior, int level, String groupId) {
+    public Employee(long id, String name, String uid, String superior, int level, Long groupId) {
         super(id);
         this.name = name;
         this.uid = uid;

@@ -9,9 +9,9 @@
 //    @Override
 //    public int compare(Shift a, Shift b) {
 //        return new CompareToBuilder()
-//                .append(a.getStartTime(), b.getStartTime())
+//                .append(a.getDate(), b.getDate())
 //                .append(a.getId(), b.getId())
-//                .append(a.getShiftType(),b.getShiftType())
+//                .append(a.getShiftName(),b.getShiftName())
 //                .toComparison();
 //    }
 //}

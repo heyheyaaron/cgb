@@ -22,4 +22,8 @@ public class Group extends AbstractPersistable{
         this.shiftType=shiftType;
         System.out.println(this);
     }
+
+    public static void main(String[] args) {
+
+    }
 }

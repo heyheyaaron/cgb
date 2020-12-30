@@ -21,4 +21,12 @@ public class RosterConstraintConfiguration {
     private HardSoftScore desiredTime=HardSoftScore.ofSoft(100);
     @ConstraintWeight("Undesired time slot for an employee")
     private HardSoftScore undesiredTime=HardSoftScore.ofSoft(100);
+    @ConstraintWeight("shift type error")
+    private HardSoftScore shiftTypeErroe=HardSoftScore.ofHard(13);
+    @ConstraintWeight("same team need same shift in one day")
+    private HardSoftScore sameTeamNeedSameShift=HardSoftScore.ofHard(1);
+    @ConstraintWeight("overnight need rest for 2 days")
+    private HardSoftScore overnightNeedRest2Days=HardSoftScore.ofHard(9);
+    @ConstraintWeight("no rest work rest")
+    private HardSoftScore noRestWorkRest=HardSoftScore.ofSoft(80);
 }

@@ -2,11 +2,13 @@ import com.example.domain.zuoxi.bean.Group;
 import com.example.domain.zuoxi.bean.Shift;
 import org.junit.jupiter.api.Test;
 
+import java.time.DayOfWeek;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
+import java.time.temporal.WeekFields;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -32,19 +34,21 @@ public class SimpleTest {
     }
     @Test
     public void test2(){
-        Shift shift0 = new Shift(0L,"A1", LocalDateTime.of(2020,12,1,9,00),LocalDateTime.of(2020,12,1,18,00),3);
-        Shift shift1 = new Shift(1L,"A1", LocalDateTime.of(2020,12,2,9,00),LocalDateTime.of(2020,12,2,18,00),3);
-        Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2020,12,3,10,00),LocalDateTime.of(2020,12,3,19,00),4);
-        Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2020,12,13,11,00),LocalDateTime.of(2020,12,13,18,00),5);
-        List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3);
-        //scoreVerifier.assertHardWeight("one employee can not work in the same day",0,problem);
-        shift0.setEmployeeId(1L);
-        shift1.setEmployeeId(1L);
-        shift2.setEmployeeId(1L);
-        shift3.setEmployeeId(1L);
-        System.out.println(shift0.getStartTime().toLocalDate().plusDays(1));
-        System.out.println(shift1.getStartTime().toLocalDate());
-        System.out.println(shift2.getStartTime().toLocalDate());
+        LocalDate now = LocalDate.now();
+        int dayOfMonth = now.getDayOfMonth();
+        System.out.println(dayOfMonth);
+        DayOfWeek dayOfWeek = now.getDayOfWeek();
+        System.out.println(dayOfWeek);
+        int length = now.getMonth().length(true);
+        System.out.println(length);
+        System.out.println(now.getMonth().maxLength());
+        WeekFields weekFields = WeekFields.of(DayOfWeek.MONDAY,4);
+        System.out.println(weekFields);
+        LocalDate with = now.with(TemporalAdjusters.firstInMonth(DayOfWeek.SUNDAY));
+        System.out.println(with);
+        String str = "abs";
+        boolean a = str.startsWith("a");
+        System.out.println(a);
 
     }
 }

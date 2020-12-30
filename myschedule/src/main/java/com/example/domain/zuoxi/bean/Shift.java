@@ -10,6 +10,7 @@ import org.optaplanner.core.api.domain.variable.PlanningVariable;
 
 import javax.validation.constraints.AssertTrue;
 import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 @Data
 @PlanningEntity(pinningFilter = ShiftPinningFilter.class)
@@ -17,10 +18,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Shift extends AbstractPersistable {
-    private String shiftType;
+    private String shiftName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private int need;
+    private LocalDate date;
+    private int week;
     @PlanningVariable(valueRangeProviderRefs = "employeeRange")
     //,nullable = true)可为空，貌似没用
     private Long employeeId;
@@ -34,35 +36,46 @@ public class Shift extends AbstractPersistable {
                 (Duration.between(startTime, endTime).getSeconds() / 60) >= 30;
     }
 
-    public Shift(long id, String shiftType, LocalDateTime startTime, LocalDateTime endTime,int need) {
+    public Shift(long id, String shiftName, LocalDateTime startTime, LocalDateTime endTime,LocalDate date, int week) {
         super(id);
-        this.shiftType = shiftType;
+        this.shiftName = shiftName;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.need=need;
+        this.date=date;
+        this.week = week;
     }
-    public Shift(long id, String shiftType, LocalDateTime startTime, LocalDateTime endTime,boolean pinned) {
+    public Shift(long id, String shiftName, LocalDateTime startTime, LocalDateTime endTime,LocalDate date, boolean pinned) {
         super(id);
-        this.shiftType = shiftType;
+        this.shiftName = shiftName;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.date=date;
         this.pinned=pinned;
     }
-    public Shift( String shiftType, LocalDateTime startTime, LocalDateTime endTime,int need) {
-        this.shiftType = shiftType;
+    public Shift(String shiftName, LocalDateTime startTime, LocalDateTime endTime, int week) {
+        this.shiftName = shiftName;
         this.startTime = startTime;
         this.endTime = endTime;
-        this.need=need;
+        this.week = week;
     }
+    public Shift(long id, String shiftName, LocalDateTime startTime, LocalDateTime endTime, LocalDate date) {
+        super(id);
+        this.shiftName = shiftName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.date=date;
+    }
+
 
     @Override
     public String toString() {
         return "Shift{" +
                 "id=" + id +
-                ", shiftType='" + shiftType + '\'' +
-                ", startTime=" + startTime +
+                ", shiftName='" + shiftName + '\'' +
+                ", date=" + startTime +
                 ", endTime=" + endTime +
-                ", need=" + need +
+                ", date=" + date +
+                ", week=" + week +
                 ", employeeId=" + employeeId +
                 ", pinned=" + pinned +
                 '}';
