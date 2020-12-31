@@ -1,6 +1,9 @@
 import com.example.domain.zuoxi.bean.Group;
 import com.example.domain.zuoxi.bean.Shift;
 import org.junit.jupiter.api.Test;
+import org.kie.api.KieServices;
+import org.kie.api.runtime.KieContainer;
+import org.kie.api.runtime.KieSession;
 
 import java.time.DayOfWeek;
 import java.time.Duration;
@@ -50,5 +53,14 @@ public class SimpleTest {
         boolean a = str.startsWith("a");
         System.out.println(a);
 
+    }
+
+    public static void main(String[] args) {
+        KieServices kss = KieServices.Factory.get();
+        KieContainer kc = kss.getKieClasspathContainer();
+        KieSession ks =kc.newKieSession("session");
+        int count = ks.fireAllRules();
+        System.out.println("总执行了"+count+"条规则");
+        ks.dispose();
     }
 }

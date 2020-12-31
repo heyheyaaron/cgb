@@ -1,0 +1,8 @@
+package rules;
+dialect "java"
+
+rule "test"
+  when
+  then
+    System.out.println("it works!");
+end

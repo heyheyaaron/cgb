@@ -72,7 +72,7 @@ public class Shift extends AbstractPersistable {
         return "Shift{" +
                 "id=" + id +
                 ", shiftName='" + shiftName + '\'' +
-                ", date=" + startTime +
+                ", startTime=" + startTime +
                 ", endTime=" + endTime +
                 ", date=" + date +
                 ", week=" + week +
