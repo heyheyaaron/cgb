@@ -8,6 +8,7 @@ import com.example.domain.zuoxi.bean.Employee
 import com.example.domain.zuoxi.bean.EmployeeAvailability
 import com.example.enums.AvailabilityType
 import com.example.domain.zuoxi.bean.GroupPlan
+import java.time.temporal.TemporalAdjusters;
 global HardSoftScoreHolder scoreHolder;
 
 rule "one employee can not work in the same day"
@@ -150,16 +151,9 @@ rule "overnight need rest for 2 days"
 end
 rule "no rest work rest"
     when
-        $s:Shift($employeeId:employeeId,$date:date)
-        Shift($date==date.minusDays(1)||$date==date.plusDays(1))
-        forall(Shift(employeeId!=$employeeId,$date==date.minusDays(1)))
-        forall(Shift(employeeId!=$employeeId,$date==date.plusDays(1)))
-        /*
-        1:2020-12-01
-        2:2020-12-02
-        1:2020-12-03
-        1:2020-12-13
-        */
+        $s:Shift($employeeId:employeeId,$date:date,date!=date.with(TemporalAdjusters.lastDayOfMonth()),date.getDayOfMonth()!=1)
+        not(Shift(employeeId==$employeeId,$date==date.minusDays(1)))
+        not(Shift(employeeId==$employeeId,$date==date.plusDays(1)))
     then
         System.out.println($employeeId+":"+$date+"665");
         scoreHolder.penalize(kcontext);

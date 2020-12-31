@@ -29,7 +29,7 @@ public class MyTest {
                 LocalDateTime.of(2020,12,3,19,00),LocalDate.of(2020,12,3),1);
         Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2020,12,13,11,00),
                 LocalDateTime.of(2020,12,13,18,00),LocalDate.of(2020,12,13),2);
-        List<Shift> shifts = Arrays.asList(shift0,shift1,shift2);
+        List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3);
         //scoreVerifier.assertHardWeight("one employee can not work in the same day",0,problem);
         shift0.setEmployeeId(1L);
         shift1.setEmployeeId(2L);
