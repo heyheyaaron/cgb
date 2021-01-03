@@ -49,16 +49,20 @@ rule "at most work 22 days"
     when
         Employee($id:id)
         //$s : Shift(employeeId == $id, $startDateTime : date)
-        Number($shiftCount:intValue > 22) from accumulate(
+        //Number($shiftCount:intValue > 22) from
+        Number(intValue > 25||intValue< 22) from accumulate(
             $other : Shift(
                 employeeId == $id//, $shiftStart : date,
                 //$shiftEnd : endTime
             ),
+            //$totalMinutes : sum(Duration.between($shiftStart, $shiftEnd).toMinutes()),
             count($other)
-            //$totalMinutes : sum(Duration.between($shiftStart, $shiftEnd).toMinutes())
+            //$shiftCount>2
+            //$totalMinutes>600
         )
     then
-        System.out.println($shiftCount);
+        //System.out.println($shiftCount);
+        //System.out.println($id+"大于2");
         scoreHolder.penalize(kcontext);
 end
 
@@ -137,7 +141,7 @@ rule "same team need same shift in one day"
         $s:Shift(employeeId==$id,$shiftName:shiftName,$date:date)
         Shift(employeeId==$id1,$shiftName!=shiftName,$date==date)
     then
-        System.out.println($id+":"+$id1);
+        //System.out.println($id+":"+$id1);
         scoreHolder.penalize(kcontext);
 end
 
@@ -146,17 +150,24 @@ rule "overnight need rest for 2 days"
         $s:Shift($employeeId:employeeId,shiftName.startsWith("F"),$date:date) &&
         (exists Shift(employeeId==$employeeId,$date==date.minusDays(1))||exists Shift(employeeId==$employeeId,$date==date.minusDays(2)))
     then
-        System.out.println($employeeId+":"+$date);
+        //System.out.println($employeeId+":overnight need rest for 2 days"+$date);
         scoreHolder.penalize(kcontext);
 end
 rule "no rest work rest"
     when
-        $s:Shift($employeeId:employeeId,$date:date,date!=date.with(TemporalAdjusters.lastDayOfMonth()),date.getDayOfMonth()!=1)
-        not(Shift(employeeId==$employeeId,$date==date.minusDays(1)))
-        not(Shift(employeeId==$employeeId,$date==date.plusDays(1)))
+        $s:Shift($employeeId:employeeId,$date:date,date.getDayOfMonth()!=1,checkLast(),$pdate:date.minusDays(1),$mdate:date.minusDays(1))
+        not(Shift(employeeId==$employeeId,(date==$pdate||date==$mdate)))
+        //not(Shift(employeeId==$employeeId,$date==date.plusDays(1)))
     then
-        System.out.println($employeeId+":"+$date+"665");
+        //System.out.println($employeeId+":"+$date+"no rest work rest");
         scoreHolder.penalize(kcontext);
+end
+/*
+rule "test not"
+    when
+        not(Shift(employeeId==3))
+    then
+        System.out.println("test not:");
 end
 rule "test forall"
     when
@@ -186,12 +197,8 @@ salience 3
     then
         System.out.println("33333");
 end
-/*
-when
-        exists(Employee())
-        forall(Shift(employeeId in (1,3)))
-    then
 */
+
 
 
 

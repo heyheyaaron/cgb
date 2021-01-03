@@ -12,6 +12,9 @@ import javax.validation.constraints.AssertTrue;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
+import java.util.Objects;
+
 @Data
 @PlanningEntity(pinningFilter = ShiftPinningFilter.class)
         //,difficultyComparatorClass = ShiftDifficultyComparator.class)
@@ -79,5 +82,8 @@ public class Shift extends AbstractPersistable {
                 ", employeeId=" + employeeId +
                 ", pinned=" + pinned +
                 '}';
+    }
+    public boolean checkLast(){
+        return !Objects.equals(date.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth(),date.getDayOfMonth());
     }
 }
