@@ -22,7 +22,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @SpringBootTest(properties = {
-        "optaplanner.solver.termination.spent-limit=5m", // Effectively disable this termination in favor of the best-score-limit
+        "optaplanner.solver.termination.spent-limit=30m", // Effectively disable this termination in favor of the best-score-limit
         "optaplanner.solver.termination.best-score-limit=0init/0hard/*soft",
         "logging.level.org.optaplanner=debug"})
 public class RosterControllerTest {
@@ -46,8 +46,8 @@ public class RosterControllerTest {
         assertTrue(solution.getHardSoftScore().isFeasible());
     }
     public Roster testGenerate(){
-        int empNum=16;
-        List<Shift> shiftTemplate = getShiftTemplate(12,12);
+        int empNum=1600;
+        List<Shift> shiftTemplate = getShiftTemplate(12,950);
         Pair<List<Long>, List<Employee>> pair = getEmployeeTemplate(empNum);
         List<Long> employeeIds = pair.getLeft();
         List<Employee> employees = pair.getRight();

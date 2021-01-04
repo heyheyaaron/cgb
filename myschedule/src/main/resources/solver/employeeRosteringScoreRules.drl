@@ -50,7 +50,7 @@ rule "at most work 22 days"
         Employee($id:id)
         //$s : Shift(employeeId == $id, $startDateTime : date)
         //Number($shiftCount:intValue > 22) from
-        Number(intValue > 25||intValue< 22) from accumulate(
+        Number(intValue > 25||intValue< 18) from accumulate(
             $other : Shift(
                 employeeId == $id//, $shiftStart : date,
                 //$shiftEnd : endTime
@@ -113,13 +113,14 @@ rule "No more than 3 consecutive shifts"
         Shift(
                 $employeeId : employeeId,
                 $firstStartDate : startTime.toLocalDate())
-        Shift(
+        exists Shift(
                 employeeId == $employeeId,
-                $firstStartDate.plusDays(1) == startTime.toLocalDate(),
-                $secondStartDate : startTime.toLocalDate())
-        Shift(
+                $firstStartDate.plusDays(1) == startTime.toLocalDate()
+                //$secondStartDate : startTime.toLocalDate()
+                )
+        exists Shift(
                 employeeId == $employeeId,
-                $secondStartDate.plusDays(1) == startTime.toLocalDate()
+                $firstStartDate.plusDays(2) == startTime.toLocalDate()
                 )
     then
         scoreHolder.penalize(kcontext);
@@ -138,8 +139,8 @@ rule "same team need same shift in one day"
     when
         Employee($id:id,$groupId:groupId)
         Employee(id>$id,$id1:id,$groupId==groupId)
-        $s:Shift(employeeId==$id,$shiftName:shiftName,$date:date)
-        Shift(employeeId==$id1,$shiftName!=shiftName,$date==date)
+        Shift(employeeId==$id,$shiftName:shiftName,$date:date,$sid:id)
+        exists Shift(employeeId==$id1,$shiftName!=shiftName,$date==date,id>$id)
     then
         //System.out.println($id+":"+$id1);
         scoreHolder.penalize(kcontext);
@@ -147,7 +148,7 @@ end
 
 rule "overnight need rest for 2 days"
     when
-        $s:Shift($employeeId:employeeId,shiftName.startsWith("F"),$date:date) &&
+        Shift($employeeId:employeeId,shiftName.startsWith("F"),$date:date) &&
         (exists Shift(employeeId==$employeeId,$date==date.minusDays(1))||exists Shift(employeeId==$employeeId,$date==date.minusDays(2)))
     then
         //System.out.println($employeeId+":overnight need rest for 2 days"+$date);
@@ -155,7 +156,7 @@ rule "overnight need rest for 2 days"
 end
 rule "no rest work rest"
     when
-        $s:Shift($employeeId:employeeId,$date:date,date.getDayOfMonth()!=1,checkLast(),$pdate:date.minusDays(1),$mdate:date.minusDays(1))
+        Shift($employeeId:employeeId,$date:date,date.getDayOfMonth()!=1,checkLast(),$pdate:date.minusDays(1),$mdate:date.minusDays(1))
         not(Shift(employeeId==$employeeId,(date==$pdate||date==$mdate)))
         //not(Shift(employeeId==$employeeId,$date==date.plusDays(1)))
     then
