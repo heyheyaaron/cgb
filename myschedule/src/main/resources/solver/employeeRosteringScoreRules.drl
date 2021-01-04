@@ -108,19 +108,35 @@ rule "Undesired time slot for an employee"
         scoreHolder.penalize(kcontext);
 end
 
-rule "No more than 3 consecutive shifts"
+rule "No more than 6 consecutive shifts"
     when
         Shift(
                 $employeeId : employeeId,
-                $firstStartDate : startTime.toLocalDate())
+                $firstStartDate : date)
         exists Shift(
                 employeeId == $employeeId,
-                $firstStartDate.plusDays(1) == startTime.toLocalDate()
+                $firstStartDate.plusDays(1) == date
                 //$secondStartDate : startTime.toLocalDate()
                 )
         exists Shift(
                 employeeId == $employeeId,
-                $firstStartDate.plusDays(2) == startTime.toLocalDate()
+                $firstStartDate.plusDays(2) == date
+                )
+        exists Shift(
+                employeeId == $employeeId,
+                $firstStartDate.plusDays(3) == date
+                )
+        exists Shift(
+                employeeId == $employeeId,
+                $firstStartDate.plusDays(4) == date
+                )
+        exists Shift(
+                employeeId == $employeeId,
+                $firstStartDate.plusDays(5) == date
+                )
+        exists Shift(
+                employeeId == $employeeId,
+                $firstStartDate.plusDays(6) == date
                 )
     then
         scoreHolder.penalize(kcontext);
@@ -139,12 +155,23 @@ rule "same team need same shift in one day"
     when
         Employee($id:id,$groupId:groupId)
         Employee(id>$id,$id1:id,$groupId==groupId)
-        Shift(employeeId==$id,$shiftName:shiftName,$date:date,$sid:id)
-        exists Shift(employeeId==$id1,$shiftName!=shiftName,$date==date,id>$id)
+        Shift(employeeId==$id,$shiftName:shiftName,$date:date)
+        exists Shift(employeeId==$id1,$shiftName!=shiftName,$date==date)
+    then
+        System.out.println($id+":"+$id1);
+        scoreHolder.penalize(kcontext);
+end
+
+/*rule "same team need close shift in one day"
+    when
+        Employee($id:id,$groupId:groupId)
+        Employee(id>$id,$id1:id,$groupId==groupId)
+        Shift(employeeId==$id,$shiftName:shiftName,$date:date)
+        exists Shift(employeeId==$id1,$shiftName!=shiftName,$date==date)
     then
         //System.out.println($id+":"+$id1);
         scoreHolder.penalize(kcontext);
-end
+end*/
 
 rule "overnight need rest for 2 days"
     when

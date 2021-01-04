@@ -15,8 +15,8 @@ public class RosterConstraintConfiguration {
     private HardSoftScore atMostWork22Days=HardSoftScore.ofHard(11);
     @ConstraintWeight("Unavailable time slot for an employee")
     private HardSoftScore unavailable=HardSoftScore.ofHard(5);
-    @ConstraintWeight("No more than 3 consecutive shifts")
-    private HardSoftScore noMore3consecutiveShifts=HardSoftScore.ofHard(5);
+    @ConstraintWeight("No more than 6 consecutive shifts")
+    private HardSoftScore noMore6consecutiveShifts=HardSoftScore.ofHard(5);
     @ConstraintWeight("Desired time slot for an employee")
     private HardSoftScore desiredTime=HardSoftScore.ofSoft(100);
     @ConstraintWeight("Undesired time slot for an employee")

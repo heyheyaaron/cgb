@@ -24,7 +24,7 @@ public class MyTest {
         Shift shift0 = new Shift(0L,"F1", LocalDateTime.of(2020,12,1,9,00),
                 LocalDateTime.of(2020,12,1,18,00),LocalDate.of(2020,12,1),1);
         Shift shift1 = new Shift(1L,"A3", LocalDateTime.of(2020,12,2,9,00),
-                LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,2),1);
+                LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,1),1);
         Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2020,12,3,10,00),
                 LocalDateTime.of(2020,12,3,19,00),LocalDate.of(2020,12,3),1);
         Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2020,12,13,11,00),
@@ -32,7 +32,7 @@ public class MyTest {
         List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3);
         //scoreVerifier.assertHardWeight("one employee can not work in the same day",0,problem);
         shift0.setEmployeeId(1L);
-        shift1.setEmployeeId(2L);
+        shift1.setEmployeeId(3L);
         shift2.setEmployeeId(1L);
         shift3.setEmployeeId(1L);
         EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
@@ -43,8 +43,8 @@ public class MyTest {
         Roster problem=new Roster(3L,employees,shifts, RosterControllerTest.employeeTemplateList,employeeAvailabilities,groupPlanTemplate);
         //Roster solution = rosterController.solve(problem);
         //assertTrue(solution.getHardSoftScore().isFeasible());
-        //scoreVerifier.assertHardWeight("no rest work rest",0,problem);
-        scoreVerifier.assertSoftWeight("no rest work rest",0,problem);
+        scoreVerifier.assertHardWeight("same team need same shift in one day",0,problem);
+        //scoreVerifier.assertSoftWeight("no rest work rest",0,problem);
         System.out.println("0!!!!");
     }
     private List<GroupPlan> getGroupPlanTemplate() {
