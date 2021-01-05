@@ -36,7 +36,7 @@ when
             $leftEndDateTime: endTime)
     Shift(
             employeeId == $employeeId,
-            $leftEndDateTime <= endTime,
+            $leftEndDateTime <= startTime,
             $leftEndDateTime.until(startTime, ChronoUnit.HOURS) < 12,
             this!=$s)
 then
@@ -50,7 +50,7 @@ rule "at most work 22 days"
         Employee($id:id)
         //$s : Shift(employeeId == $id, $startDateTime : date)
         //Number($shiftCount:intValue > 22) from
-        Number(intValue > 25||intValue< 18) from accumulate(
+        Number(intValue > 25||intValue< 16) from accumulate(
             $other : Shift(
                 employeeId == $id//, $shiftStart : date,
                 //$shiftEnd : endTime
@@ -155,23 +155,37 @@ rule "same team need same shift in one day"
     when
         Employee($id:id,$groupId:groupId)
         Employee(id>$id,$id1:id,$groupId==groupId)
-        Shift(employeeId==$id,$shiftName:shiftName,$date:date)
-        exists Shift(employeeId==$id1,$shiftName!=shiftName,$date==date)
+        Shift(employeeId==$id,$shiftName:shiftName,$date:date,$startTime:startTime,$sid:id)
+        $s:Shift(employeeId==$id1,$shiftName!=shiftName,$date==date,$startTime1:startTime,$sid<id)
     then
-        System.out.println($id+":"+$id1);
-        scoreHolder.penalize(kcontext);
+        //System.out.println($sid+":"+$id+"%"+$id1+"ok");
+        scoreHolder.penalize(kcontext,$s.getDuration($startTime)/10);
+        //scoreHolder.addSoftConstraintMatch(kcontext,$s.getDuration($startTime));
 end
-
-/*rule "same team need close shift in one day"
+rule "same team over 3 shift in one day"
     when
         Employee($id:id,$groupId:groupId)
         Employee(id>$id,$id1:id,$groupId==groupId)
+        Employee(id>$id1,$id2:id,$groupId==groupId)
         Shift(employeeId==$id,$shiftName:shiftName,$date:date)
-        exists Shift(employeeId==$id1,$shiftName!=shiftName,$date==date)
+        Shift(employeeId==$id1,$shiftName!=shiftName,$date==date,$shiftName1:shiftName)
+        exists Shift(employeeId==$id2,$shiftName!=shiftName,$date==date,$shiftName1!=shiftName)
     then
-        //System.out.println($id+":"+$id1);
+        //System.out.println($sid+":"+$id+"%"+$id1+"ok");
         scoreHolder.penalize(kcontext);
-end*/
+        //scoreHolder.addSoftConstraintMatch(kcontext,$s.getDuration($startTime));
+end
+
+//rule "same team need close shift in one day"
+//    when
+//        Employee($id:id,$groupId:groupId)
+//        Employee(id>$id,$id1:id,$groupId==groupId)
+//        Shift(employeeId==$id,$shiftName:shiftName,$date:date,$startTime:startTime,$sid:id)
+//        $s:Shift(employeeId==$id1,$shiftName!=shiftName,$date==date,$startTime1:startTime,$sid<id)
+//    then
+//        //System.out.println($id+":"+$id1+"::"+$s.getDuration($startTime));
+//        scoreHolder.penalize(kcontext,$s.getDuration($startTime));
+//end
 
 rule "overnight need rest for 2 days"
     when

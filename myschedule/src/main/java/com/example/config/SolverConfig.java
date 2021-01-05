@@ -9,14 +9,12 @@ import org.optaplanner.core.config.solver.SolverManagerConfig;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import java.util.UUID;
-
 @Configuration
 public class SolverConfig {
     @Bean
-    public SolverManager<Roster, UUID> rosterSolverManager(){
+    public SolverManager<Roster, String> rosterSolverManager(){
         org.optaplanner.core.config.solver.SolverConfig solverConfig = org.optaplanner.core.config.solver.SolverConfig.createFromXmlResource("solverConfig.xml");
-        SolverManager<Roster, UUID> solverManager = SolverManager.create(solverConfig, new SolverManagerConfig());
+        SolverManager<Roster, String> solverManager = SolverManager.create(solverConfig, new SolverManagerConfig());
         return solverManager;
     }
     @Bean

@@ -9,9 +9,7 @@ import java.time.LocalDate;
 import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class SimpleTest {
     private static List<Shift> shiftTemplateList = new ArrayList();
@@ -19,10 +17,7 @@ public class SimpleTest {
 
     @Test
     public void test1(){
-        Set set = new HashSet();
-        boolean a = set.add("a");
-        boolean b = set.add("a");
-        System.out.println(a+":"+b);
+        System.out.println(1/10);
     }
     @Test
     public void test2(){

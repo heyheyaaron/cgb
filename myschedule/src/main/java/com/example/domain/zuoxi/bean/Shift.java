@@ -12,6 +12,7 @@ import javax.validation.constraints.AssertTrue;
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
 import java.util.Objects;
 
@@ -85,5 +86,16 @@ public class Shift extends AbstractPersistable {
     }
     public boolean checkLast(){
         return !Objects.equals(date.with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth(),date.getDayOfMonth());
+    }
+    public int getDuration(LocalDateTime localDateTime){
+        int until = (int) startTime.until(localDateTime, ChronoUnit.MINUTES);
+        return until>=0?until:-until;
+    }
+
+    public static void main(String[] args) {
+        Shift shift= new Shift();
+        shift.setStartTime(LocalDateTime.of(2021,1,5,6,0,0));
+        int duration = shift.getDuration(LocalDateTime.now());
+        System.out.println(duration);
     }
 }

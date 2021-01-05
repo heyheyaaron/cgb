@@ -16,7 +16,7 @@ public class RosterConstraintConfiguration {
     @ConstraintWeight("Unavailable time slot for an employee")
     private HardSoftScore unavailable=HardSoftScore.ofHard(5);
     @ConstraintWeight("No more than 6 consecutive shifts")
-    private HardSoftScore noMore6consecutiveShifts=HardSoftScore.ofHard(5);
+    private HardSoftScore noMore6consecutiveShifts=HardSoftScore.ofHard(37);
     @ConstraintWeight("Desired time slot for an employee")
     private HardSoftScore desiredTime=HardSoftScore.ofSoft(100);
     @ConstraintWeight("Undesired time slot for an employee")
@@ -25,6 +25,10 @@ public class RosterConstraintConfiguration {
     private HardSoftScore shiftTypeErroe=HardSoftScore.ofHard(13);
     @ConstraintWeight("same team need same shift in one day")
     private HardSoftScore sameTeamNeedSameShift=HardSoftScore.ofHard(1);
+    @ConstraintWeight("same team over 3 shift in one day")
+    private HardSoftScore sameTeamOver3Shift=HardSoftScore.ofHard(25);
+//    @ConstraintWeight("same team need close shift in one day")
+//    private HardSoftScore sameTeamNeedCloseShift=HardSoftScore.ofSoft(1);
     @ConstraintWeight("overnight need rest for 2 days")
     private HardSoftScore overnightNeedRest2Days=HardSoftScore.ofHard(9);
     @ConstraintWeight("no rest work rest")

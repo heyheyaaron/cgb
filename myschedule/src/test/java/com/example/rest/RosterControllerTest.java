@@ -46,8 +46,8 @@ public class RosterControllerTest {
         assertTrue(solution.getHardSoftScore().isFeasible());
     }
     public Roster testGenerate(){
-        int empNum=1600;
-        List<Shift> shiftTemplate = getShiftTemplate(12,950);
+        int empNum=160;
+        List<Shift> shiftTemplate = getShiftTemplate(12,95);
         Pair<List<Long>, List<Employee>> pair = getEmployeeTemplate(empNum);
         List<Long> employeeIds = pair.getLeft();
         List<Employee> employees = pair.getRight();
@@ -55,6 +55,16 @@ public class RosterControllerTest {
         List<GroupPlan> groupPlans = getGroupPlanTemplate();
         Roster roster = new Roster(1L,employeeIds,shiftTemplate,employees,employeeAvailabilityTemplateList,groupPlans);
         return roster;
+    }
+    @Test
+    public void testTeminate(){
+        String problemId = "6f3b7bf9-1591-4c1c-9249-8712581461d0";
+        rosterController.terminate(problemId);
+    }
+    @Test
+    public void testStatus(){
+        String problemId = "6f3b7bf9-1591-4c1c-9249-8712581461d0";
+        System.out.println(rosterController.getSolverStatus(problemId).name());
     }
 
     private List<GroupPlan> getGroupPlanTemplate() {
@@ -92,7 +102,7 @@ public class RosterControllerTest {
             Employee employee = new Employee();
             employee.setId((long)i);
             employee.setName("emp"+i);
-            employee.setGroupId((long)r.nextInt(num/2));
+            employee.setGroupId((long)r.nextInt(num>10?num/10:1));
             employee.setLevel(r.nextInt(5));
             employees.add(employee);
         }
@@ -103,7 +113,7 @@ public class RosterControllerTest {
         shiftTypeTemplateList.addAll(Arrays.asList("A1","A2","A3","P1","P2","P3"));
         Employee employee1 = new Employee(1L,"aaa","123456","zhuguan1",3,1L);
         Employee employee2 = new Employee(2L,"bbb","123222","zhuguan1",3,1L);
-        Employee employee3= new Employee(3L,"ccc","123433","zhuguan1",3,5L);
+        Employee employee3= new Employee(3L,"ccc","123433","zhuguan1",3,1L);
         Employee employee4= new Employee(4L,"ddd","123444","zhuguan2",4,4L);
         Employee employee5= new Employee(5L,"eee","123455","zhuguan3",4,3L);
         Employee employee6= new Employee(6L,"fff","123466","zhuguan3",5,3L);

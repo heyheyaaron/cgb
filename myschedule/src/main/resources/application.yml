@@ -1,9 +1,9 @@
 optaplanner:
   solver:
     termination:
-      spent-limit: 3m
+      spent-limit: 5m
       best-score-limit: 0hard/*soft
 logging:
   level:
     org:
-      optaplanner: info
+      optaplanner: debug
