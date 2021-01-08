@@ -7,3 +7,6 @@ logging:
   level:
     org:
       optaplanner: debug
+cfg:
+  drools:
+    gapHours: 10

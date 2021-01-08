@@ -10,6 +10,7 @@ import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class SimpleTest {
     private static List<Shift> shiftTemplateList = new ArrayList();
@@ -17,7 +18,10 @@ public class SimpleTest {
 
     @Test
     public void test1(){
-        System.out.println(1/10);
+        Random r = new Random(12345);
+        for (int i = 0; i < 10; i++) {
+            System.out.println(r.nextInt(100));
+        }
     }
     @Test
     public void test2(){

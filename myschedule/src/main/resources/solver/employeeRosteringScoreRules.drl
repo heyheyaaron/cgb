@@ -9,6 +9,9 @@ import com.example.domain.zuoxi.bean.EmployeeAvailability
 import com.example.enums.AvailabilityType
 import com.example.domain.zuoxi.bean.GroupPlan
 import java.time.temporal.TemporalAdjusters;
+//import com.example.domain.zuoxi.bean.Group
+import com.example.config.DroolsParameterConfiguration
+global DroolsParameterConfiguration configuration
 global HardSoftScoreHolder scoreHolder;
 
 rule "one employee can not work in the same day"
@@ -205,12 +208,21 @@ rule "no rest work rest"
         scoreHolder.penalize(kcontext);
 end
 /*
+rule "can not all employee in a group in rest"
+    when
+        Group
+        not(Shift(employeeId==3))
+    then
+        System.out.println("test not:"+configuration.getGapHours());
+end
+
 rule "test not"
     when
         not(Shift(employeeId==3))
     then
-        System.out.println("test not:");
+        System.out.println("test not:"+configuration.getGapHours());
 end
+
 rule "test forall"
     when
         exists(Employee())
