@@ -92,6 +92,25 @@ public class Shift extends AbstractPersistable {
         return until>=0?until:-until;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Shift shift = (Shift) o;
+        return id==shift.id&&week == shift.week &&
+                pinned == shift.pinned &&
+                Objects.equals(shiftName, shift.shiftName) &&
+                Objects.equals(startTime, shift.startTime) &&
+                Objects.equals(endTime, shift.endTime) &&
+                Objects.equals(date, shift.date) &&
+                Objects.equals(employeeId, shift.employeeId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id,shiftName, startTime, endTime, date, week, employeeId, pinned);
+    }
+
     public static void main(String[] args) {
         Shift shift= new Shift();
         shift.setStartTime(LocalDateTime.of(2021,1,5,6,0,0));
