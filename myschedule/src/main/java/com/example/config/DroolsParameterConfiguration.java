@@ -14,4 +14,5 @@ import org.springframework.stereotype.Component;
 @Data
 public class DroolsParameterConfiguration {
     private int gapHours=12;
+    private int workDays=22;
 }

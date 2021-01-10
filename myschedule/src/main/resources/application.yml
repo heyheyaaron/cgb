@@ -10,3 +10,4 @@ logging:
 cfg:
   drools:
     gapHours: 10
+    workDays: 23

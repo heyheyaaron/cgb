@@ -11,7 +11,7 @@ import com.example.domain.zuoxi.bean.GroupPlan
 import java.time.temporal.TemporalAdjusters;
 //import com.example.domain.zuoxi.bean.Group
 import com.example.config.DroolsParameterConfiguration
-global DroolsParameterConfiguration configuration
+//global DroolsParameterConfiguration configuration
 global HardSoftScoreHolder scoreHolder;
 
 rule "one employee can not work in the same day"
@@ -51,9 +51,10 @@ end
 rule "at most work 22 days"
     when
         Employee($id:id)
+        DroolsParameterConfiguration($workDays:workDays)
         //$s : Shift(employeeId == $id, $startDateTime : date)
         //Number($shiftCount:intValue > 22) from
-        Number(intValue > 25||intValue< 16) from accumulate(
+        $num:Number(intValue != $workDays) from accumulate(
             $other : Shift(
                 employeeId == $id//, $shiftStart : date,
                 //$shiftEnd : endTime
@@ -66,7 +67,8 @@ rule "at most work 22 days"
     then
         //System.out.println($shiftCount);
         //System.out.println($id+"大于2");
-        scoreHolder.penalize(kcontext);
+        //System.out.println($workDays);
+        scoreHolder.penalize(kcontext,$num.intValue()>$workDays?$num.intValue()-$workDays:$workDays-$num.intValue());
 end
 
 rule "Unavailable time slot for an employee"

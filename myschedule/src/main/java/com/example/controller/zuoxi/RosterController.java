@@ -1,5 +1,6 @@
 package com.example.controller.zuoxi;
 
+import com.example.config.DroolsParameterConfiguration;
 import com.example.domain.zuoxi.bean.*;
 import com.example.enums.AvailabilityType;
 import org.apache.commons.lang3.tuple.Pair;
@@ -12,6 +13,7 @@ import org.optaplanner.core.api.score.constraint.Indictment;
 import org.optaplanner.core.api.solver.SolverJob;
 import org.optaplanner.core.api.solver.SolverManager;
 import org.optaplanner.core.api.solver.SolverStatus;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
@@ -29,6 +31,8 @@ public class RosterController {
     private SolverManager solverManager;
     @Resource(name="rosterScoreManager")
     private ScoreManager scoreManager;
+    @Autowired
+    private DroolsParameterConfiguration configuration;
     private static List<String> shiftTypeTemplateList = new ArrayList();
     public static List<Employee> employeeTemplateList = new ArrayList();
     public static List<EmployeeAvailability> employeeAvailabilityTemplateList = new ArrayList();
@@ -74,6 +78,7 @@ public class RosterController {
 //        ScoreManager<Roster, HardSoftScore> scoreManager = ScoreManager.create(SolverFactory.createFromXmlResource("solverConfig.xml"));
         String problemId = UUID.randomUUID().toString();
         System.out.println(problemId);
+        problem.setConfiguration(configuration);
         // Submit the problem to start solving
         SolverJob<Roster, String> solverJob = solverManager.solve(problemId, problem);
         Roster solution;
@@ -82,6 +87,8 @@ public class RosterController {
             System.out.println(solverStatus);
             // Wait until the solving ends
             solution = solverJob.getFinalBestSolution();
+            System.out.println(solution.getShiftList().stream().filter(shift -> shift.getEmployeeId() == null).count());
+            System.out.println(solution.getShiftList().stream().filter(shift -> shift.getEmployeeId() != null).count());
             /*Map<Long, Long> collect = solution.getShiftList().stream().collect(Collectors.groupingBy(s -> s.getEmployeeId(), Collectors.counting()));
             collect.forEach((k,v)->{
                 System.out.println("k="+k+",v="+v);

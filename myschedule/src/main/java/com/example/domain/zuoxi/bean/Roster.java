@@ -1,5 +1,6 @@
 package com.example.domain.zuoxi.bean;
 
+import com.example.config.DroolsParameterConfiguration;
 import com.example.config.RosterConstraintConfiguration;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -31,6 +32,8 @@ public class Roster extends AbstractPersistable{
     private List<GroupPlan> groupPlans;
     @PlanningScore
     private HardSoftScore hardSoftScore;
+    @ProblemFactProperty
+    private DroolsParameterConfiguration configuration;
 
     public Roster(long id, List<Long> employeeIdList, List<Shift> shiftList,List<Employee> employees,List<EmployeeAvailability> employeeAvailabilities) {
         super(id);

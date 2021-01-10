@@ -12,7 +12,7 @@ public class RosterConstraintConfiguration {
     @ConstraintWeight("Break between non-consecutive shifts is at least 12 hours")
     private HardSoftScore breakAtLeast12Hours = HardSoftScore.ofHard(7);
     @ConstraintWeight("at most work 22 days")
-    private HardSoftScore atMostWork22Days=HardSoftScore.ofHard(11);
+    private HardSoftScore atMostWork22Days=HardSoftScore.ofHard(33);
     @ConstraintWeight("Unavailable time slot for an employee")
     private HardSoftScore unavailable=HardSoftScore.ofHard(5);
     @ConstraintWeight("No more than 6 consecutive shifts")

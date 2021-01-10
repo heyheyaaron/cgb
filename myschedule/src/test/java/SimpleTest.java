@@ -1,3 +1,5 @@
+import com.example.convert.ShiftConverter;
+import com.example.domain.excel.ShiftBO;
 import com.example.domain.zuoxi.bean.Shift;
 import org.junit.jupiter.api.Test;
 import org.kie.api.KieServices;
@@ -10,7 +12,6 @@ import java.time.temporal.TemporalAdjusters;
 import java.time.temporal.WeekFields;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Random;
 
 public class SimpleTest {
     private static List<Shift> shiftTemplateList = new ArrayList();
@@ -18,10 +19,18 @@ public class SimpleTest {
 
     @Test
     public void test1(){
-        Random r = new Random(12345);
-        for (int i = 0; i < 10; i++) {
-            System.out.println(r.nextInt(100));
-        }
+        ShiftBO bo = new ShiftBO(null, 3, LocalDate.now());
+        ShiftBO bo1 = new ShiftBO("A2", 3, LocalDate.now());
+        ShiftBO bo2 = new ShiftBO("A3", 3, LocalDate.now());
+        List<ShiftBO> boList = new ArrayList<>();
+        boList.add(bo);
+        boList.add(bo1);
+        boList.add(bo2);
+        ShiftConverter instance = ShiftConverter.INSTANCE;
+        System.out.println(instance.bolist2dolist(boList));
+        Shift shift = instance.bo2do(bo);
+        System.out.println(shift);
+
     }
     @Test
     public void test2(){
