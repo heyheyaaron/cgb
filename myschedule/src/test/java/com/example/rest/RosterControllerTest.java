@@ -114,7 +114,7 @@ public class RosterControllerTest {
         Employee employee1 = new Employee(1L,"aaa","123456","zhuguan1",3,1L);
         Employee employee2 = new Employee(2L,"bbb","123222","zhuguan1",3,1L);
         Employee employee3= new Employee(3L,"ccc","123433","zhuguan1",3,1L);
-        Employee employee4= new Employee(4L,"ddd","123444","zhuguan2",4,4L);
+        Employee employee4= new Employee(4L,"ddd","123444","zhuguan2",4,1L);
         Employee employee5= new Employee(5L,"eee","123455","zhuguan3",4,3L);
         Employee employee6= new Employee(6L,"fff","123466","zhuguan3",5,3L);
         Employee employee7= new Employee(7L,"ggg","123467","zhuguan2",5,4L);

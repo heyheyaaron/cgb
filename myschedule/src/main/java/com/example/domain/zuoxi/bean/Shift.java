@@ -27,7 +27,7 @@ public class Shift extends AbstractPersistable {
     private LocalDateTime endTime;
     private LocalDate date;
     private int week;
-    @PlanningVariable(valueRangeProviderRefs = "employeeRange",nullable = true)
+    @PlanningVariable(valueRangeProviderRefs = "employeeRange",nullable = false)
     //,nullable = true)可为空，貌似没用
     private Long employeeId;
     @PlanningPin

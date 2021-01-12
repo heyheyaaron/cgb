@@ -30,8 +30,14 @@ public class SimpleTest {
         System.out.println(instance.bolist2dolist(boList));
         Shift shift = instance.bo2do(bo);
         System.out.println(shift);
-
+        List<Integer> list=new ArrayList();
+        list.add(1);
+        list.add(2);
+        list.add(3);
+        Long distinct = list.stream().filter(a -> a != 2).distinct().count();
+        System.out.println(distinct);
     }
+
     @Test
     public void test2(){
         LocalDate now = LocalDate.now();

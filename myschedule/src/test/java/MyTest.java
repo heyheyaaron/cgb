@@ -33,24 +33,24 @@ public class MyTest {
     @Test
     @Timeout(600_000)
     public void solveRoster1() throws ExecutionException, InterruptedException {
-        List<Long> employees = Arrays.asList(1L, 2L,3L);
-        Shift shift0 = new Shift(0L,"F1", LocalDateTime.of(2020,12,1,9,00),
-                LocalDateTime.of(2020,12,1,18,00),LocalDate.of(2020,12,1),1);
+        List<Long> employees = Arrays.asList(1L, 2L,3L,4L);
+        Shift shift0 = new Shift(0L,"F1", LocalDateTime.of(2020,12,2,9,00),
+                LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,2),1);
         Shift shift1 = new Shift(1L,"A3", LocalDateTime.of(2020,12,2,00,00),
                 LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,2),1);
         Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2020,12,2,00,00),
                 LocalDateTime.of(2020,12,2,19,00),LocalDate.of(2020,12,2),1);
-        Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2020,12,13,11,00),
-                LocalDateTime.of(2020,12,13,18,00),LocalDate.of(2020,12,13),2);
+        Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2020,12,2,11,00),
+                LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,2),2);
         List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3);
         //scoreVerifier.assertHardWeight("one employee can not work in the same day",0,problem);
         shift0.setEmployeeId(1L);
-        shift0.setPinned(true);
-        shift1.setEmployeeId(1L);
-        shift1.setPinned(true);
-        shift2.setEmployeeId(1L);
-        shift2.setPinned(true);
-        shift3.setEmployeeId(1L);
+        //shift0.setPinned(true);
+        shift1.setEmployeeId(2L);
+        //shift1.setPinned(true);
+        shift2.setEmployeeId(3L);
+        //shift2.setPinned(true);
+        shift3.setEmployeeId(4L);
         EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
                 , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNDESIRED.getType());
         List<EmployeeAvailability> employeeAvailabilities = new ArrayList<>();
@@ -68,7 +68,7 @@ public class MyTest {
         ScoreExplanation<Roster, HardSoftScore> explanation = scoreManager.explainScore(finalBestSolution);
         Map<Object, Indictment<HardSoftScore>> indictmentMap = explanation.getIndictmentMap();
         Map<String, ConstraintMatchTotal<HardSoftScore>> constraintMatchTotalMap = explanation.getConstraintMatchTotalMap();
-        scoreVerifier.assertHardWeight("Break between non-consecutive shifts is at least 12 hours",0,problem);
+        scoreVerifier.assertHardWeight("same team over 3 shift in one day",0,problem);
         System.out.println("0!!!!");
     }
     private List<GroupPlan> getGroupPlanTemplate() {

@@ -19,11 +19,11 @@ when
     $s : Shift(
                 employeeId != null,
                 $employeeId: employeeId,
-                $startDate: startTime.toLocalDate(),
+                $date: date,
                 $id:id)
     Shift(
             employeeId == $employeeId,
-            $startDate == startTime.toLocalDate(),
+            $date == date,
             id>$id)
 then
     scoreHolder.penalize(kcontext);
@@ -174,13 +174,12 @@ rule "same team over 3 shift in one day"
         Employee(id>$id1,$id2:id,$groupId==groupId)
         Shift(employeeId==$id,$shiftName:shiftName,$date:date)
         Shift(employeeId==$id1,$shiftName!=shiftName,$date==date,$shiftName1:shiftName)
-        exists Shift(employeeId==$id2,$shiftName!=shiftName,$date==date,$shiftName1!=shiftName)
+        exists Shift(employeeId==$id2,shiftName not in ($shiftName,$shiftName1),$date==date)
     then
         //System.out.println($sid+":"+$id+"%"+$id1+"ok");
         scoreHolder.penalize(kcontext);
         //scoreHolder.addSoftConstraintMatch(kcontext,$s.getDuration($startTime));
 end
-
 //rule "same team need close shift in one day"
 //    when
 //        Employee($id:id,$groupId:groupId)
