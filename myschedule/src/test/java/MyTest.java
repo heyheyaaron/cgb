@@ -51,8 +51,8 @@ public class MyTest {
         shift2.setEmployeeId(3L);
         //shift2.setPinned(true);
         shift3.setEmployeeId(4L);
-        EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
-                , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNDESIRED.getType());
+        EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDate.of(2020, 12, 1)
+                , AvailabilityType.UNDESIRED.getType());
         List<EmployeeAvailability> employeeAvailabilities = new ArrayList<>();
         employeeAvailabilities.add(employeeAvailability1);
         List<GroupPlan> groupPlanTemplate = getGroupPlanTemplate();

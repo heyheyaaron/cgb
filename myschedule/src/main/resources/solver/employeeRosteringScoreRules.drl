@@ -76,11 +76,9 @@ rule "Unavailable time slot for an employee"
         $availability: EmployeeAvailability(
                 state == AvailabilityType.UNAVAILABLE.getType(),
                 $employeeId : employeeId,
-                $startDateTime : startDateTime,
-                $endDateTime : endDateTime)
+                $date:date)
         Shift(employeeId == $employeeId,
-            $startDateTime <= endTime,
-            $endDateTime >= startTime)
+            $date==date)
     then
         scoreHolder.penalize(kcontext);
 end
@@ -90,11 +88,9 @@ rule "Desired time slot for an employee"
         $availability: EmployeeAvailability(
                 state == AvailabilityType.DESIRED.getType(),
                 $employeeId : employeeId,
-                $startDateTime : startDateTime,
-                $endDateTime : endDateTime)
+                $date:date)
         Shift(employeeId == $employeeId,
-            $startDateTime <= endTime,
-            $endDateTime >= startTime)
+            $date==date)
     then
         scoreHolder.reward(kcontext);
 end
@@ -104,11 +100,9 @@ rule "Undesired time slot for an employee"
         $availability: EmployeeAvailability(
                 state == AvailabilityType.UNDESIRED.getType(),
                 $employeeId : employeeId,
-                $startDateTime : startDateTime,
-                $endDateTime : endDateTime)
+                $date : date)
         Shift(employeeId == $employeeId,
-            $startDateTime <= endTime,
-            $endDateTime >= startTime)
+            date==$date)
     then
         scoreHolder.penalize(kcontext);
 end

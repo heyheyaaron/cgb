@@ -203,10 +203,10 @@ public class RosterController {
         Employee employee9= new Employee(9L,"iii","123455","zhuguan3",4,3L);
         Employee employee10= new Employee(10L,"jjj","123466","zhuguan3",5,3L);
         employeeTemplateList = Arrays.asList(employee1, employee2, employee3, employee4,employee5,employee6,employee7,employee8,employee9,employee10);
-        EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
-                , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNAVAILABLE.getType());
-        EmployeeAvailability employeeAvailability2 = new EmployeeAvailability(2L,1L, LocalDateTime.of(2020, 12, 1, 0, 00)
-                , LocalDateTime.of(2020, 12, 3, 0, 00), AvailabilityType.UNDESIRED.getType());
+        EmployeeAvailability employeeAvailability1 = new EmployeeAvailability(1L,1L, LocalDate.of(2020, 12, 1)
+                , AvailabilityType.UNAVAILABLE.getType());
+        EmployeeAvailability employeeAvailability2 = new EmployeeAvailability(2L,1L, LocalDate.of(2020, 12, 1)
+                , AvailabilityType.UNDESIRED.getType());
         employeeAvailabilityTemplateList.add(employeeAvailability1);
         employeeAvailabilityTemplateList.add(employeeAvailability2);
     }
