@@ -36,6 +36,8 @@ public class SimpleTest {
         list.add(3);
         Long distinct = list.stream().filter(a -> a != 2).distinct().count();
         System.out.println(distinct);
+        System.out.println(575/31);
+        System.out.println(575%31);
     }
 
     @Test

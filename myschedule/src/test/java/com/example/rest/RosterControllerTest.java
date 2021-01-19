@@ -45,6 +45,16 @@ public class RosterControllerTest {
         assertTrue(!solution.getShiftList().stream().anyMatch(s -> Objects.isNull(s.getEmployeeId())));
         assertTrue(solution.getHardSoftScore().isFeasible());
     }
+    @Test
+    @Timeout(600_000)
+    public void solveTest() {
+        LocalDateTime start = LocalDateTime.now();
+        System.out.println(start+"=======start");
+        rosterController.solveTest();
+        LocalDateTime end = LocalDateTime.now();
+        System.out.println(end+"=======end");
+        System.out.println("运行了"+Duration.between(start,end).getSeconds()+"秒");
+    }
     public Roster testGenerate(){
         int empNum=160;
         List<Shift> shiftTemplate = getShiftTemplate(12,95);

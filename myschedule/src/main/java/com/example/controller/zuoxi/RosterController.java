@@ -20,6 +20,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
 import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.atomic.AtomicLong;
@@ -36,10 +37,11 @@ public class RosterController {
     private static List<String> shiftTypeTemplateList = new ArrayList();
     public static List<Employee> employeeTemplateList = new ArrayList();
     public static List<EmployeeAvailability> employeeAvailabilityTemplateList = new ArrayList();
-
+    AtomicLong index=new AtomicLong(0);
     @GetMapping("/solveTest")
     public Roster solveTest() {
         Roster problem = testGenerate();
+        preDeal(problem);
 //        SolverConfig solverConfig = SolverConfig.createFromXmlResource("solverConfig.xml"); @RequestBody Roster problem
 //        SolverManager<Roster, UUID> solverManager = SolverManager.create(solverConfig, new SolverManagerConfig());
 //        ScoreManager<Roster, HardSoftScore> scoreManager = ScoreManager.create(SolverFactory.createFromXmlResource("solverConfig.xml"));
@@ -138,13 +140,14 @@ public class RosterController {
     }
     public Roster testGenerate(){
         int empNum=160;
-        List<Shift> shiftTemplate = getShiftTemplate(12,95);
+        List<Shift> shiftTemplate = getShiftTemplate(12,2945);
         Pair<List<Long>, List<Employee>> pair = getEmployeeTemplate(empNum);
         List<Long> employeeIds = pair.getLeft();
         List<Employee> employees = pair.getRight();
         //Map<Integer, WeekData> weeks = weeks(YearMonth.now());
         List<GroupPlan> groupPlans = getGroupPlanTemplate();
         Roster roster = new Roster(1L,employeeIds,shiftTemplate,employees,employeeAvailabilityTemplateList,groupPlans);
+        roster.setConfiguration(configuration);
         return roster;
     }
     private List<GroupPlan> getGroupPlanTemplate() {
@@ -156,23 +159,34 @@ public class RosterController {
         return list;
     }
 
-    public List<Shift> getShiftTemplate(int month,int dailyShiftTimes){
-        AtomicLong index=new AtomicLong(0);
+    public List<Shift> getShiftTemplate(int month,int shiftTimes){
         LocalDate localDate = LocalDate.now();
         int length = localDate.lengthOfMonth();
         Random r = new Random();
         List<Shift> list= new ArrayList<>();
+        int dailyShiftTimes= shiftTimes/length;
+        int restShift=shiftTimes%length;
         for (int day = 1; day <= length; day++) {
             for (int i = 0; i < dailyShiftTimes; i++) {
-                int hour = r.nextInt(13);
-                LocalDateTime start = LocalDateTime.of(2020, month, day, hour, 00);
-                LocalDateTime end = LocalDateTime.of(2020, month, day, hour+8, 00);
-                String shiftType = shiftTypeTemplateList.get(r.nextInt(shiftTypeTemplateList.size()));
-                list.add(new Shift(index.getAndIncrement(),shiftType, start, end, LocalDate.of(2020,month,day)));
+                genShift(month, index, r, list, day);
+            }
+        }
+        if (restShift!=0){
+            for (int day = 1; day <=restShift ; day++) {
+                genShift(month, index, r, list, day);
             }
         }
         return list;
     }
+
+    private void genShift(int month, AtomicLong index, Random r, List<Shift> list, int day) {
+        int hour = r.nextInt(13);
+        LocalDateTime start = LocalDateTime.of(2020, month, day, hour, 00);
+        LocalDateTime end = LocalDateTime.of(2020, month, day, hour+8, 00);
+        String shiftType = shiftTypeTemplateList.get(r.nextInt(shiftTypeTemplateList.size()));
+        list.add(new Shift(index.getAndIncrement(),shiftType, start, end, LocalDate.of(2020,month,day)));
+    }
+
     public Pair<List<Long>, List<Employee>> getEmployeeTemplate(int num){
         List<Long> employeeIds=new ArrayList<>();
         List<Employee> employees= new ArrayList<>();
@@ -210,4 +224,18 @@ public class RosterController {
         employeeAvailabilityTemplateList.add(employeeAvailability1);
         employeeAvailabilityTemplateList.add(employeeAvailability2);
     }
+    private void preDeal(Roster roster){
+        List<Shift> shiftList = roster.getShiftList();
+        List<Long> employeeIdList = roster.getEmployeeIdList();
+        int workDays = roster.getConfiguration().getWorkDays();
+        int employeeResource=employeeIdList.size()*workDays;
+        int diff=shiftList.size()>employeeResource?shiftList.size()-employeeResource:employeeResource-shiftList.size();
+        int dayOfMonth = shiftList.get(0).getDate().with(TemporalAdjusters.lastDayOfMonth()).getDayOfMonth();
+        //工作量小于人力，平均增加班次
+        if(employeeResource>shiftList.size()){
+            List<Shift> shiftTemplate = getShiftTemplate(12, diff);
+            shiftList.addAll(shiftTemplate);
+        }
+    }
+
 }
