@@ -14,7 +14,10 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.TemporalAdjusters;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Data
 @PlanningEntity(pinningFilter = ShiftPinningFilter.class)
@@ -25,7 +28,7 @@ public class Shift extends AbstractPersistable {
     private String shiftName;
     private LocalDateTime startTime;
     private LocalDateTime endTime;
-    private LocalDate date;
+    public LocalDate date;
     private int week;
     @PlanningVariable(valueRangeProviderRefs = "employeeRange",nullable = false)
     //,nullable = true)可为空，貌似没用
@@ -90,6 +93,31 @@ public class Shift extends AbstractPersistable {
     public int getDuration(LocalDateTime localDateTime){
         int until = (int) startTime.until(localDateTime, ChronoUnit.MINUTES);
         return until>=0?until:-until;
+    }
+    public static int getMaxDay(List<Shift> list){
+        List<Shift> collect = list.stream().sorted(Comparator.comparing(Shift::getDate)).collect(Collectors.toList());
+        System.out.println("调用了");
+        if(collect.size()==0){
+            return 0;
+        }
+        int m=1;
+        int maxDay=1;
+        for(int i = 0; i < collect.size()-1; i++) {
+            if (collect.get(i).getDate().getDayOfMonth()+1==collect.get(i).getDate().getDayOfMonth()){
+                m++;
+                maxDay=m>maxDay?m:maxDay;
+            }else {
+                m=1;
+            }
+        }
+        return maxDay;
+    }
+    public int getWorkDay(){
+        if (shiftName.startsWith("E")){
+            return 1;
+        }else {
+            return 2;
+        }
     }
 
     @Override

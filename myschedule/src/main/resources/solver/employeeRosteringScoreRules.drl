@@ -11,7 +11,11 @@ import com.example.domain.zuoxi.bean.GroupPlan
 import java.time.temporal.TemporalAdjusters;
 //import com.example.domain.zuoxi.bean.Group
 import com.example.config.DroolsParameterConfiguration
-//global DroolsParameterConfiguration configuration
+import java.util.List;
+import java.util.Comparator
+import java.util.stream.Collectors
+import java.time.LocalDate
+//import function com.example.domain.zuoxi.bean.Shift.getMaxDay
 global HardSoftScoreHolder scoreHolder;
 
 rule "one employee can not work in the same day"
@@ -107,7 +111,7 @@ rule "Undesired time slot for an employee"
         scoreHolder.penalize(kcontext);
 end
 
-rule "No more than 6 consecutive shifts"
+/*rule "No more than 6 consecutive shifts"
     when
         Shift(
                 $employeeId : employeeId,
@@ -139,7 +143,7 @@ rule "No more than 6 consecutive shifts"
                 )
     then
         scoreHolder.penalize(kcontext);
-end
+end*/
 //与指定每天班组指定的班类型不一致
 rule "shift type error"
     when
@@ -202,6 +206,37 @@ rule "no rest work rest"
         //System.out.println($employeeId+":"+$date+"no rest work rest");
         scoreHolder.penalize(kcontext);
 end
+
+rule "continuous day at most 6"
+    when
+        $e:Employee($id:id)
+        exists(Shift(employeeId==$id))
+        $list:List() from collect(Shift(employeeId==$id))
+        //eval(getMaxDay($list))
+    then
+        int maxDay = getMaxDay($list);
+        if(maxDay>6){
+            scoreHolder.penalize(kcontext,maxDay-2);
+        }
+end
+function int getMaxDay(List<Shift> list){
+    List<Shift> collect = list.stream().sorted(Comparator.comparing(Shift::getDate)).collect(Collectors.toList());
+    //System.out.println(collect);
+    if(collect.size()==0){
+        return 0;
+    }
+    int m=1;
+    int maxDay=1;
+    for(int i = 0; i < collect.size()-1; i++) {
+      if (collect.get(i).getDate().getDayOfMonth()+1==collect.get(i+1).getDate().getDayOfMonth()){
+        m++;
+        maxDay=m>maxDay?m:maxDay;
+      }else {
+        m=1;
+      }
+    }
+    return maxDay;
+}
 /*
 rule "can not all employee in a group in rest"
     when
