@@ -25,8 +25,8 @@ public class MyTest {
     @Timeout(600_000)
     public void solveRoster1() throws ExecutionException, InterruptedException {
         List<Long> employees = Arrays.asList(1L, 2L,3L,4L);
-        Shift shift0 = new Shift(0L,"F1", LocalDateTime.of(2020,12,2,9,00),
-                LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,5),1);
+        Shift shift0 = new Shift(0L,"F1", LocalDateTime.of(2020,12,1,9,00),
+                LocalDateTime.of(2020,12,1,18,00),LocalDate.of(2020,12,1),1);
         Shift shift1 = new Shift(1L,"A3", LocalDateTime.of(2020,12,2,00,00),
                 LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,2),1);
         Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2020,12,2,00,00),
@@ -58,9 +58,9 @@ public class MyTest {
         ScoreManager<Roster, HardSoftScore> scoreManager = ScoreManager.create(SolverFactory.createFromXmlResource("solverConfig.xml"));
         ScoreExplanation<Roster, HardSoftScore> explanation = scoreManager.explainScore(finalBestSolution);
         Map<Object, Indictment<HardSoftScore>> indictmentMap = explanation.getIndictmentMap();
-        Map<String, ConstraintMatchTotal<HardSoftScore>> constraintMatchTotalMap = explanation.getConstraintMatchTotalMap();*/
-        RosterControllerTest.employeeTemplateList.forEach(x-> System.out.println(x));
-        scoreVerifier.assertHardWeight("continuous day at most 6",0,problem);
+        Map<String, ConstraintMatchTotal<HardSoftScore>> constraintMatchTotalMap = explanation.getConstraintMatchTotalMap();
+        RosterControllerTest.employeeTemplateList.forEach(x-> System.out.println(x));*/
+        scoreVerifier.assertHardWeight("shift type error",0,problem);
         System.out.println("0!!!!");
     }
     private List<GroupPlan> getGroupPlanTemplate() {

@@ -149,7 +149,7 @@ rule "shift type error"
     when
         Employee($id:id,$groupId:groupId)
         Shift(employeeId==$id,$shiftName:shiftName,$date:date)
-        GroupPlan(groupId==$groupId,date==$date,!$shiftName.startsWith(shiftType))
+        GroupPlan(groupId==$groupId,date==$date,!$shiftName str[startsWith] shiftType)
     then
         scoreHolder.penalize(kcontext);
 end
@@ -272,7 +272,7 @@ activation-group "g1"
 salience 4
     when
     then
-        System.out.println("22222");
+        System.out.println("33331");
 end
 rule "test3"
 activation-group "g1"

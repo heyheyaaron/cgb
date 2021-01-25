@@ -50,7 +50,7 @@ public class ExcelController {
             String fileName = URLEncoder.encode("测试", "UTF-8").replaceAll("\\+", "%20");
             response.setHeader("Content-disposition", "attachment;filename*=utf-8''" + fileName + ".xlsx");
             // 这里需要设置不关闭流
-            int i = 1/0;
+            //int i = 1/0;
             EasyExcel.write(response.getOutputStream(), ShiftBO.class).sheet("模板")
                     .doWrite(data());
         } catch (Exception e) {

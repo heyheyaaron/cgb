@@ -7,7 +7,7 @@ logging:
   level:
     org:
       optaplanner: debug
-cfg:
+cgb:
   drools:
     gapHours: 10
     workDays: 23

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  * 3 * @Date: 2021/1/8 17:08
  * 4
  */
-@ConfigurationProperties(prefix = "cfg.drools")
+@ConfigurationProperties(prefix = "cgb.drools")
 @Component
 @Data
 public class DroolsParameterConfiguration {
