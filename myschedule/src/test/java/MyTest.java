@@ -1,3 +1,4 @@
+import com.example.config.DroolsParameterConfiguration;
 import com.example.domain.zuoxi.bean.EmployeeAvailability;
 import com.example.domain.zuoxi.bean.GroupPlan;
 import com.example.domain.zuoxi.bean.Roster;
@@ -25,14 +26,14 @@ public class MyTest {
     @Timeout(600_000)
     public void solveRoster1() throws ExecutionException, InterruptedException {
         List<Long> employees = Arrays.asList(1L, 2L,3L,4L);
-        Shift shift0 = new Shift(0L,"F1", LocalDateTime.of(2020,12,1,9,00),
-                LocalDateTime.of(2020,12,1,18,00),LocalDate.of(2020,12,1),1);
-        Shift shift1 = new Shift(1L,"A3", LocalDateTime.of(2020,12,2,00,00),
-                LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,2),1);
-        Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2020,12,2,00,00),
-                LocalDateTime.of(2020,12,2,19,00),LocalDate.of(2020,12,6),1);
-        Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2020,12,2,11,00),
-                LocalDateTime.of(2020,12,2,18,00),LocalDate.of(2020,12,4),2);
+        Shift shift0 = new Shift(0L,"F1", LocalDateTime.of(2021,2,11,9,00),
+                LocalDateTime.of(2021,2,11,18,00),LocalDate.of(2021,2,11),1);
+        Shift shift1 = new Shift(1L,"A3", LocalDateTime.of(2021,2,12,00,00),
+                LocalDateTime.of(2021,02,12,18,00),LocalDate.of(2021,02,12),1);
+        Shift shift2 = new Shift(2L,"A2", LocalDateTime.of(2021,2,6,00,00),
+                LocalDateTime.of(2021,2,6,19,00),LocalDate.of(2021,2,13),1);
+        Shift shift3 = new Shift(3L,"A3", LocalDateTime.of(2021,2,4,11,00),
+                LocalDateTime.of(2021,2,4,18,00),LocalDate.of(2021,2,4),2);
         List<Shift> shifts = Arrays.asList(shift0,shift1,shift2,shift3);
         //scoreVerifier.assertHardWeight("one employee can not work in the same day",0,problem);
         shift0.setEmployeeId(1L);
@@ -48,6 +49,8 @@ public class MyTest {
         employeeAvailabilities.add(employeeAvailability1);
         List<GroupPlan> groupPlanTemplate = getGroupPlanTemplate();
         Roster problem=new Roster(3L,employees,shifts, RosterControllerTest.employeeTemplateList,employeeAvailabilities,groupPlanTemplate);
+        DroolsParameterConfiguration configuration=new DroolsParameterConfiguration();
+        problem.setConfiguration(configuration);
         //Roster solution = rosterController.solve(problem);
         //assertTrue(solution.getHardSoftScore().isFeasible());
         //scoreVerifier.assertSoftWeight("same team over 3 shift in one day",0,problem);
@@ -60,7 +63,7 @@ public class MyTest {
         Map<Object, Indictment<HardSoftScore>> indictmentMap = explanation.getIndictmentMap();
         Map<String, ConstraintMatchTotal<HardSoftScore>> constraintMatchTotalMap = explanation.getConstraintMatchTotalMap();
         RosterControllerTest.employeeTemplateList.forEach(x-> System.out.println(x));*/
-        scoreVerifier.assertHardWeight("shift type error",0,problem);
+        scoreVerifier.assertHardWeight("at most work 22 days",0,problem);
         System.out.println("0!!!!");
     }
     private List<GroupPlan> getGroupPlanTemplate() {

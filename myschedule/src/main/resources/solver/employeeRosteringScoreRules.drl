@@ -55,13 +55,12 @@ end
 rule "at most work 22 days"
     when
         Employee($id:id)
-        DroolsParameterConfiguration($workDays:workDays)
+        DroolsParameterConfiguration($workDays:workDays,$holidays:holidays)
         //$s : Shift(employeeId == $id, $startDateTime : date)
         //Number($shiftCount:intValue > 22) from
         $num:Number(intValue != $workDays) from accumulate(
             $other : Shift(
-                employeeId == $id//, $shiftStart : date,
-                //$shiftEnd : endTime
+                employeeId == $id,$holidays not contains date
             ),
             //$totalMinutes : sum(Duration.between($shiftStart, $shiftEnd).toMinutes()),
             count($other)
@@ -69,7 +68,7 @@ rule "at most work 22 days"
             //$totalMinutes>600
         )
     then
-        //System.out.println($shiftCount);
+        System.out.println($num);
         //System.out.println($id+"大于2");
         //System.out.println($workDays);
         scoreHolder.penalize(kcontext,$num.intValue()>$workDays?$num.intValue()-$workDays:$workDays-$num.intValue());
